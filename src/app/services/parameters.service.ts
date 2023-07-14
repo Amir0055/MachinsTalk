@@ -1,0 +1,25 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Parameterss } from '../entities/Parameterss';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ParametersService {
+ 
+  private baseUrl = 'http://localhost:8085';
+  constructor(private http: HttpClient) { }
+
+  getAllParamters() {
+    return this.http.get<any>(this.baseUrl + '/parameters');
+  }
+
+  public registerParamters(request: Parameterss) {
+    return this.http.post<Parameterss>(this.baseUrl + '/parameters', request);
+  }
+  
+  public addParamsAndAssignToPaths(request: Parameterss,id: number) {
+    return this.http.post<Parameterss>(this.baseUrl + '/parameters/'+id, request);
+  }
+}

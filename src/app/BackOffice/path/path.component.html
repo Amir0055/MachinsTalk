@@ -1,0 +1,41 @@
+
+<form [formGroup]="form">
+  <div class="row">
+    <div class="col">
+  <div class="input-field">
+    <input matInput type="name" name="name"
+           placeholder="name" [(ngModel)]="path.name" formControlName="name">
+  </div>
+  <div class="input-field">
+    <input matInput type="path"
+           placeholder="le path" [(ngModel)]="path.path" formControlName="path">
+  </div>
+  <select id="inputGroupSelect01" [(ngModel)]="path.requestType" formControlName="TypeReq">
+    <option value="GET">GET</option>
+    <option value="POST">POST</option>
+    <option value="PUT">PUT</option>
+    <option value="DELET">DELET</option>
+  </select>
+  </div>
+  <br>
+    <div class="col">
+  <div *ngFor="let control of  KeysFieldAsFormArray.controls ;let i = index;" formArrayName='Keys' >
+    <div [formGroupName]="i" >
+      <div  class="input-field" >
+        <input matInput type="text"
+               placeholder="Key{{i}}"  formControlName="Key" >
+      </div>
+      <button class="button" type="button" (click)="remove(i)" >Remove</button>
+    </div>
+  
+  </div>
+  <button  class="button"   (click)="addControl()" > Add New Parameters</button>
+  <br>
+  
+    </div>
+  </div>
+  <br>
+  <button class="button" class="btn btn-success" type="submit" (click)="formValue()" [disabled]="form.invalid">
+    Save path
+  </button>
+</form>
