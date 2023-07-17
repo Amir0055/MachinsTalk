@@ -5,7 +5,7 @@
 
 <br><br>
 <div class="row">
-<div class="container-fluid well span6"></div>
+<div class="container-fluid well span6">
 
 	<div class="row-fluid">
         <div class="span2" >
@@ -20,14 +20,24 @@
             <h6>Note: {{app.note}}</h6>
             <h6>Port: {{app.numPort}}</h6>
             <h6>Protocol: {{app.protocol}}</h6>
-            <h6>URL: {{app.basicUrl}}</h6>
-            <h6><a href="#">More... </a></h6>
+            <h6>URL:<a href="#">{{app.basicUrl}}</a></h6>
+           <h6>Paths:</h6>
+        <ul>
+        
+            <li *ngFor ="let path of app.paths">
+                <h6>name: {{path.name}}</h6>
+                <h6>path: {{path.path}}</h6>
+            </li>
+
+        </ul>
+
+            <h6><a href="{{app.basicUrl}}">More... </a></h6>
       
         </div>
     
         <div class="span2">
             <div class="btn-group">
-                <a class="btn dropdown-toggle btn-info" data-toggle="dropdown"  >
+                <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" routerLink="/admin/updateApp" >
                     Update 
                     <span class="icon-cog icon-white"></span><span class="caret"></span>
                 </a>
@@ -36,6 +46,4 @@
         </div>
 </div>
 </div>
-<div class="row">
-    <app-update-app></app-update-app>
-</div>
+
