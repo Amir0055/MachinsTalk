@@ -1,3 +1,4 @@
+import { ParamType } from './ParamType';
 import { Path } from './Path';
 
 export class Parameterss {
@@ -7,8 +8,4 @@ export class Parameterss {
     paramType!: ParamType;
     pathsss!: Path;
   }
- enum ParamType {
-     QUERRY_PARAM ,
-     PATH_VARIABLE,
 
-   }

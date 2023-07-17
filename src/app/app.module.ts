@@ -18,6 +18,10 @@ import { ApplicationComponent } from './BackOffice/application/application.compo
 import { DetailsAppComponent } from './BackOffice/details-app/details-app.component';
 import { UpdateAppComponent } from './BackOffice/update-app/update-app.component';
 import { PathComponent } from './BackOffice/path/path.component';
+import { DropDownInputsComponent } from './drop-down-inputs/drop-down-inputs.component';
+import { UpdatePathComponent } from './BackOffice/update-path/update-path.component';
+import { WellDoneComponent } from './well-done/well-done.component';
+import { WarningComponent } from './warning/warning.component';
 
 
 @NgModule({
@@ -33,7 +37,11 @@ import { PathComponent } from './BackOffice/path/path.component';
     ListapplicationComponent,
     DetailsAppComponent,
     UpdateAppComponent,
-    PathComponent
+    PathComponent,
+    DropDownInputsComponent,
+    UpdatePathComponent,
+    WellDoneComponent,
+    WarningComponent
   ],
   imports: [
     BrowserModule,

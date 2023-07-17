@@ -11,7 +11,6 @@ import { ApplicationService } from 'src/app/services/application.service';
 export class DetailsAppComponent  implements OnInit{
 id !:number
 app !:application;
-
 constructor(private _service: ApplicationService,private router: ActivatedRoute,   private route: Router) { }
 ngOnInit(): void {
  this.router.params.subscribe(params=>{
