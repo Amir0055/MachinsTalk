@@ -61,14 +61,14 @@
                           <h3 style="color: rgba(64, 64, 255, 0.607);"> Path :</h3>
                             <div class="form-group">
                               <input matInput type="name" name="name"class="form-control"
-                                placeholder="name *" [(ngModel)]="path.name" formControlName="name">
+                                placeholder="name *" [(ngModel)]="resp.name" formControlName="name">
                             </div>
                             <div class="form-group">
                               <input matInput type="path" class="form-control"
-                              placeholder="le path *" [(ngModel)]="path.path" formControlName="path">
+                              placeholder="le path *" [(ngModel)]="resp.path" formControlName="path">
                             </div>
                             <div class="form-group">
-                            <select  class="form-control" id="inputGroupSelect01" [(ngModel)]="path.requestType" formControlName="TypeReq">
+                            <select  class="form-control" id="inputGroupSelect01" [(ngModel)]="resp.requestType" formControlName="TypeReq">
                               <option value="GET">GET</option>
                               <option value="POST">POST</option>
                               <option value="PUT">PUT</option>

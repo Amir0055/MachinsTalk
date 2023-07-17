@@ -13,8 +13,18 @@ export class PathService {
   getAllPaths() {
     return this.http.get<any>(this.baseUrl + '/paths');
   }
+  findById(id:number){
+    return this.http.get<any>(this.baseUrl + '/paths/'+id);
+  }
 
   public registerPath(request: Path) {
     return this.http.post<Path>(this.baseUrl + '/paths', request);
+  }
+  affect(id: number,path: Path): Observable<any> {
+    return this.http.post(this.baseUrl+"/paths/"+id,path);
+  }
+  //PUT http://localhost:8085/paths
+  update(path: Path): Observable<any> {
+    return this.http.put(this.baseUrl+"/paths",path);
   }
 }
