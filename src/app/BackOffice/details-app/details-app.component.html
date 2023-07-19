@@ -21,15 +21,8 @@
             <h6>Port: {{app.numPort}}</h6>
             <h6>Protocol: {{app.protocol}}</h6>
             <h6>URL:<a href="#">{{app.basicUrl}}</a></h6>
-           <h6>Paths:</h6>
-        <ul>
+          
         
-            <li *ngFor ="let path of app.paths">
-                <h6>name: {{path.name}}</h6>
-                <h6>path: {{path.path}}</h6>
-            </li>
-
-        </ul>
 
             <h6><a href="{{app.basicUrl}}">More... </a></h6>
       
@@ -47,3 +40,56 @@
 </div>
 </div>
 
+
+<!-- Editable table -->
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+      Paths List
+    </h3>
+    <div class="card-body">
+      <div id="table" class="table-editable">
+        <span class="table-add float-right mb-3 mr-2" routerLink="/admin/Path/{{app.id}}"
+          ><a routerLink="/admin/Path/{{app.id}}" class="text-success"
+            ><i class="fas fa-plus fa-2x" aria-hidden="true"></i></a
+        ></span>
+        <table class="table table-bordered table-responsive-md table-striped text-center">
+          <thead>
+            <tr>
+              <th class="text-center"> Name</th>
+              <th class="text-center">Path</th>
+              <th class="text-center"> Request Type</th>
+              <th class="text-center">Operation</th>
+           
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor ="let path of app.paths">
+
+              <td class="pt-3-half" contenteditable="true">{{path.name}}</td>
+              <td class="pt-3-half" contenteditable="true">{{path.path}}</td>
+              <td class="pt-3-half" contenteditable="true">{{path.requestType}}</td>
+              
+              <td>
+                <span class="table-remove"
+                  ><button type="button" class="btn btn-danger btn-rounded btn-sm my-0"  (click)="deletee(path)" >
+                    Remove
+                  </button></span>
+               
+                  <span class="table-remove"style="margin-left: 20px;"
+                  ><button type="button" class="btn btn-success"  routerLink="/admin/updatePath/{{path.id}}" >
+                    Update
+                  </button></span>
+              </td>
+            </tr>
+            <!-- This is our clonable table line -->
+            
+            <!-- This is our clonable table line -->
+           
+            <!-- This is our clonable table line -->
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Editable table -->

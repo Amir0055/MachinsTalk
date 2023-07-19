@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { application } from '../entities/application';
 import { Observable } from 'rxjs';
+import { Path } from '../entities/Path';
 @Injectable({
   providedIn: 'root'
 })
@@ -29,4 +30,9 @@ export class ApplicationService {
     delete(id: any): Observable<any> {
       return this._http.delete(`${this.usersUrl}/${id}`);
     }
+    usersUrl1="http://localhost:8085/paths";
+     deletee(id: any): Observable<any> {
+      return this._http.delete(`${this.usersUrl1}/${id}`);
+    }
+
 }

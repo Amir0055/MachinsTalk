@@ -1,4 +1,4 @@
-
+<!--
 <form [formGroup]="form">
   <div class="row">
     <div class="col">
@@ -31,11 +31,83 @@
   </div>
   <button  class="button"   (click)="addControl()" > Add New Parameters</button>
   <br>
-  
+  <select id="inputGroupSelect01"  formControlName="paramType">
+    <option value="QUERRY_PARAM">QUERRY_PARAM</option>  
+    <option value="PATH_VARIABLE">PATH_VARIABLE</option>
+  </select>
     </div>
   </div>
   <br>
   <button class="button" class="btn btn-success" type="submit" (click)="formValue()" [disabled]="form.invalid">
     Save path
   </button>
-</form>
+</form>-->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container register-form">
+  <form [formGroup]="form">
+            <div class="form">
+                <div class="note">
+                    <p> This is a Path Register .</p>
+                </div>
+
+                <div class="form-content">
+                    <div class="row">
+                            <!-- Col 1 -->
+                        <div class="col-md-6">
+                          <h3 style="color: rgba(64, 64, 255, 0.607);"> Path :</h3>
+                            <div class="form-group">
+                              <input matInput type="name" name="name"class="form-control"
+                                placeholder="name *" [(ngModel)]="path.name" formControlName="name">
+                            </div>
+                            <div class="form-group">
+                              <input matInput type="path" class="form-control"
+                              placeholder="le path *" [(ngModel)]="path.path" formControlName="path">
+                            </div>
+                            <div class="form-group">
+                            <select  class="form-control" id="inputGroupSelect01" [(ngModel)]="path.requestType" formControlName="TypeReq">
+                              <option value="GET">GET</option>
+                              <option value="POST">POST</option>
+                              <option value="PUT">PUT</option>
+                              <option value="DELET">DELET</option>
+                            </select> 
+                          </div>
+                        </div>
+                        <!-- Col 2 -->
+                  
+                        <div class="col-md-6">
+                     
+                            <h3 style="color: rgba(64, 64, 255, 0.607);"> Parameters :</h3>
+                        
+                            <div class="form-group">
+                              <div *ngFor="let control of  KeysFieldAsFormArray.controls ;let i = index;" formArrayName='Keys' >
+                                <div [formGroupName]="i" >
+                                  <div  class="input-field" >
+                                    <input matInput type="text" class="form-control"
+                                           placeholder="Key{{i}}"  formControlName="Key" >
+                                  </div>
+                                  <button class="btnRemove" type="button" (click)="remove(i)" >Remove</button>
+                                </div>
+                              
+                              </div>
+                              <button  class="btnAdd"  (click)="addControl()" > + </button> 
+                            </div> 
+                              <div class="form-group">
+                              <select class="form-control" id="inputGroupSelect01"  formControlName="paramType">
+                                <option value="QUERRY_PARAM">QUERRY_PARAM</option>  
+                                <option value="PATH_VARIABLE">PATH_VARIABLE</option>
+                              </select>
+                              </div>
+                    
+                            </div>
+                       
+                        </div>
+                    </div>
+                    <button type="button" class="btnSubmit"  (click)="formValue()" [disabled]="form.invalid">Submit</button>
+                </div>
+          
+            </form>
+        </div>

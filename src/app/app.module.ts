@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule  } from '@angular/core';
+import { NgModule  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,7 +10,6 @@ import { FooteradminComponent } from './BackOffice/footeradmin/footeradmin.compo
 import { BodyadminComponent } from './BackOffice/bodyadmin/bodyadmin.component';
 
 import { ListapplicationComponent } from './BackOffice/listapplication/listapplication.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AjoutAppComponent } from './BackOffice/ajoutApp/ajoutApp.component';
@@ -18,6 +17,11 @@ import { ApplicationComponent } from './BackOffice/application/application.compo
 import { DetailsAppComponent } from './BackOffice/details-app/details-app.component';
 import { UpdateAppComponent } from './BackOffice/update-app/update-app.component';
 import { PathComponent } from './BackOffice/path/path.component';
+import { DropDownInputsComponent } from './drop-down-inputs/drop-down-inputs.component';
+import { UpdatePathComponent } from './BackOffice/update-path/update-path.component';
+import { WellDoneComponent } from './well-done/well-done.component';
+import { WarningComponent } from './warning/warning.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -32,8 +36,15 @@ import { PathComponent } from './BackOffice/path/path.component';
     BodyadminComponent,
     ListapplicationComponent,
     DetailsAppComponent,
-    UpdateAppComponent,
-    PathComponent
+    UpdatePathComponent,
+    PathComponent,
+    DropDownInputsComponent,
+    UpdatePathComponent,
+    WellDoneComponent,
+    WarningComponent,
+    UpdateAppComponent
+
+    
   ],
   imports: [
     BrowserModule,
@@ -41,10 +52,9 @@ import { PathComponent } from './BackOffice/path/path.component';
     AppRoutingModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     RouterModule,
     HttpClientModule,
-
+    FormsModule
 
   ],
   providers: [],

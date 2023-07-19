@@ -8,7 +8,7 @@ import { ApplicationService } from '../../services/application.service';
 @Component({
   selector: 'app-ajoutApp',
   templateUrl: './ajoutApp.component.html',
-  styleUrls: ['./ajoutApp.component.scss']
+  styleUrls: ['./ajoutApp.component.css']
 })
 export class AjoutAppComponent implements OnInit {
   app : application= new application();
@@ -20,7 +20,7 @@ export class AjoutAppComponent implements OnInit {
 
 
   onSubmit(): void {
-
+    console.log(this.app);
 
     this._service.save(this.app)  .subscribe(
       () => {
