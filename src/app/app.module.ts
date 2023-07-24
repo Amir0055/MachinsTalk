@@ -22,8 +22,10 @@ import { UpdatePathComponent } from './BackOffice/update-path/update-path.compon
 import { WellDoneComponent } from './well-done/well-done.component';
 import { WarningComponent } from './warning/warning.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     WarningComponent,
     UpdateAppComponent
 
-    
+
+
   ],
   imports: [
     BrowserModule,
@@ -54,10 +57,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     RouterModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ConfirmDialogModule,
+    ConfirmDialogModule,
+    ToastModule,
+    BrowserAnimationsModule
 
   ],
-  providers: [],
+  providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent],
 
 })

@@ -1,4 +1,5 @@
 import { Parameterss } from './Parameterss';
+import { application } from './application';
 
 
 export class Path {
@@ -8,14 +9,14 @@ export class Path {
     path!: string;
     requestType!: RequestType;
 
-    parameters!: Parameterss[];
-
+    parameters: Parameterss[] = [];
+    application?: application;
   }
   enum RequestType {
-    GET,
-    POST,
-    PUT,
-    DELETE,
+    get,
+    post,
+    put,
+    delete,
 
   }
 

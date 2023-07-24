@@ -14,26 +14,25 @@ export class AjoutAppComponent implements OnInit {
   app : application= new application();
 
   error ="";
-  constructor(private _service: ApplicationService,private router: Router) { 
+  constructor(private _service: ApplicationService,private router: Router) {
 
   }
 
 
-  onSubmit(): void {
+  onSubmit(app:application): void {
     console.log(this.app);
+    this._service.save(app).subscribe(
 
-    this._service.save(this.app)  .subscribe(
-      () => {
-        console.log(this.app);
-        this.router.navigate(['/admin/application']);
+      app => {
+        // Do any additional handling of the response here
+      // window.location.reload();
+        this.router.navigate(['admin/listapp']);
+
       },
-      (error) => {
-        this.error = error.error.message;
-      }
-    );
-      
-      
-  } 
+      );
+
+
+  }
   ngOnInit(): void {
   }
 }
