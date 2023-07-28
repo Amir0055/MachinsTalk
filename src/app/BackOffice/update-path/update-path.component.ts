@@ -19,7 +19,6 @@ import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/a
   styleUrls: ['./update-path.component.css'],
 })
 export class UpdatePathComponent implements OnInit {
-
   idPath!: number;
   idApp!: number;
   path: Path = new Path();
@@ -75,59 +74,37 @@ export class UpdatePathComponent implements OnInit {
   setParametersData(parameters: Parameterss) {
     this.param = parameters;
   }
-  /*
-  AddParamters(form: NgForm) {//ajouter
-    const foundElement = this.ListParameters.find((element) => {
-      element.id === this.param.id
-      this.param=new Parameterss();
-    }); 
-    if (foundElement) {
-      foundElement.clee = this.param.clee;
-      foundElement.paramType = this.param.paramType;
-      console.log(this.ListParameters);
-      this.path.parameters = this.ListParameters;
-      console.log('MAWJOUDD'); 
-     // this.param=new Parameterss();
-    } 
-    else{
-     this.addParameterpath(form);}
-     this.param=new Parameterss();
-
-  }*/
-  
-  MakeChange(form: NgForm) {const isUnique = this.isUniqueKey(this.param.clee, this.ListParameters);
-    if (!isNaN(this.idPath)) {
-      // Vérifier si la clé est unique en appelant la fonction isUniqueKey
-      
-
-      if (isUnique) {
+  isExictePath(id :number){ //Exict in the Url Id path
+    if (!isNaN(id))
+    return true;
+  return  false;
+  }  
+  MakeChange(form: NgForm) {
+    const isUnique = this.isUniqueKey(this.param.clee, this.ListParameters);
+    if (this.isExictePath(this.idPath)) {
+      if (isUnique) {// check unique of elements typing 
         const foundIndex = this.ListParameters.findIndex((element) => {
           return element.clee === this.param.clee;
         });
 
         if (foundIndex !== -1) {
-          // Effectuer la mise à jour des paramètres existants
+         //Make change at the existing Parameters in liste
           this.ListParameters[foundIndex].clee = this.param.clee;
           this.ListParameters[foundIndex].paramType = this.param.paramType;
         } else {
-          // Ajouter un nouveau paramètre
+     
           this.addParameterpath(form);
           this.param = new Parameterss();
         }
-
-        // Mettre à jour les paramètres de "this.path"
         this.path.parameters = this.ListParameters;
       } else {
-        // La clé n'est pas unique, affichez un message ou effectuez d'autres actions nécessaires
-        console.log('La clé n\'est pas unique. Veuillez choisir une clé différente.');
+        
+        console.log('The Key not unike. Veuillez choisir une clé différente.');
       }
     } else {
-      // Si l'idPath est NaN, appelez simplement la fonction "addParameterpath"
-      if (isUnique) 
+      if (isUnique)    // Si l'idPath est NaN, appelez simplement la fonction "addParameterpath"
       this.addParameterpath(form);
     }
-
-    // Réinitialiser "this.param" après avoir effectué les opérations
     this.param = new Parameterss();
   }
 
@@ -140,17 +117,11 @@ export class UpdatePathComponent implements OnInit {
   }
   affectPathToApp(pat: Path) {//-- REGISTER PATH
     this.path.parameters = this.ListParameters;
-
     const app = new application();
     app.id = this.idApp;
     this.path.application = app;
-    this.pathService.registerPath(this.path).subscribe((data) => {
-      this.path = data;
-    //  this.RedirectionTo(this.idPath);
-    if (!isNaN(this.idPath))
-      window.location.reload();
-    this.location.back();
-    });
+    this.AddPath(this.path);
+
   }
   RedirectionTo(idPath:number){
     if (!isNaN(idPath))
@@ -169,16 +140,16 @@ export class UpdatePathComponent implements OnInit {
     this.ListParameters.push(parma);
   
   }
-  remove(param:Parameterss){//(Remove) delete From The DB
-    const foundIndex = this.ListParameters.findIndex((element) => {
-      return element.clee === param.clee;
-    });
-    if (foundIndex !== -1){
-    this.parmeterService.Delete(param.id).subscribe((data)=>{
-      window.location.reload();
-    });}
+  remove(param:Parameterss){//(Remove)
     this.ListParameters=this.ListParameters.filter((elem)=> elem !==param)
   }
+  AddPath(path: Path){
+    this.pathService.registerPath(path).subscribe((data) => {
+      this.path = data;
+     
+    },(error) =>{
+      console.error('Failed Add Path Data ', error);
+    });}
   /*confirm2(param:Parameterss) {
     this.confirmationService.confirm({
       message: 'Do you want to delete this Application?',
