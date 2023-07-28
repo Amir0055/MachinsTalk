@@ -1,148 +1,224 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormArray, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { ParamType } from 'src/app/entities/ParamType';
 import { Parameterss } from 'src/app/entities/Parameterss';
 import { Path } from 'src/app/entities/Path';
 import { ParametersService } from 'src/app/services/parameters.service';
 import { PathService } from 'src/app/services/path.service';
 import { Location } from '@angular/common';
+
+import { application } from 'src/app/entities/application';
+import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-update-path',
   templateUrl: './update-path.component.html',
   styleUrls: ['./update-path.component.css'],
 })
 export class UpdatePathComponent implements OnInit {
-  success =false ;
+
+  idPath!: number;
+  idApp!: number;
   path: Path = new Path();
   param: Parameterss = new Parameterss();
-  resp: any;
-  parmType!: ParamType;
-  keyss!: any;
-  idPAth!: number;
-  
+  ListParameters: Parameterss[] = [];
 
   constructor(
-    private fb: FormBuilder,
-    private parametersService: ParametersService,
     private pathService: PathService,
+    private parmeterService:ParametersService,
     private router: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService,
+    private routerr: Router
   ) {}
+
   ngOnInit(): void {
     this.router.params.subscribe((params) => {
-      this.idPAth = +params['id'];
+      this.idPath = +params['id'];
+      this.idApp = +params['idApp'];
+      
+     
+      if (!isNaN(this.idPath))
+      this.retivePathData();  
     });
-    this.pathService.findById(this.idPAth).subscribe((response: any) => {
-      this.resp = response;
-      console.log(this.resp);
-      for (let index = 0; index < this.resp.parameters.length; index++) {
-        //const element = array[index];
-        this.KeysFieldAsFormArray.push(
-          this.key(this.resp.parameters[index]['clee'])
-        );
-
-        this.form.patchValue({
-          paramType: this.resp.parameters[index]['paramType'],
-        });
-      }
-    /*  for (let index = 0; index < this.resp.parameters.length; index++) {
-        this.parametersService
-          .Delete(response.parameters[index]['id'])
-          .subscribe((data) => {
-            console.log('Deleted : / ');
-          });
-      }*/
-    });
-
-  }
   
-  form = this.fb.group({
-    name: [
-      '',
-      {
-        // validators: [Validators.required, Validators.pattern("")],
+  }
+
+  retivePathData() {
+    this.pathService.findById(this.idPath).subscribe(
+      (data) => {
+        this.path = data;
+        this.ListParameters = this.path.parameters;
       },
-    ],
-    path: [
-      '',
-      //[Validators.required, Validators.minLength(8)]
-    ],
-    TypeReq: [
-      '',
+      (error) => {
+        console.error('Error Fetching Path Data ', error);
+      }
+    );
+  }
+    Newpath(pat: Path) {
+    this.path.parameters = this.ListParameters;
+    const app = new application();
+    app.id = this.idApp;
+    this.path.application = app;
+    this.pathService.registerPath(this.path).subscribe((data) => {
+    this.path=data;
 
-    ],
-    Keys: this.fb.array([]),
-    paramType: [
-      '',
+   
+    });
+
+  }
+
+  setParametersData(parameters: Parameterss) {
+    this.param = parameters;
+  }
+  /*
+  AddParamters(form: NgForm) {//ajouter
+    const foundElement = this.ListParameters.find((element) => {
+      element.id === this.param.id
+      this.param=new Parameterss();
+    }); 
+    if (foundElement) {
+      foundElement.clee = this.param.clee;
+      foundElement.paramType = this.param.paramType;
+      console.log(this.ListParameters);
+      this.path.parameters = this.ListParameters;
+      console.log('MAWJOUDD'); 
+     // this.param=new Parameterss();
+    } 
+    else{
+     this.addParameterpath(form);}
+     this.param=new Parameterss();
+
+  }*/
   
-    ],
-  });
-  setKey(index: number, value: string): void {
-    const keysArray = this.form.get('Keys') as FormArray;
-    if (keysArray.length > index) {
-      keysArray.controls[index].setValue(value);
+  MakeChange(form: NgForm) {const isUnique = this.isUniqueKey(this.param.clee, this.ListParameters);
+    if (!isNaN(this.idPath)) {
+      // Vérifier si la clé est unique en appelant la fonction isUniqueKey
+      
+
+      if (isUnique) {
+        const foundIndex = this.ListParameters.findIndex((element) => {
+          return element.clee === this.param.clee;
+        });
+
+        if (foundIndex !== -1) {
+          // Effectuer la mise à jour des paramètres existants
+          this.ListParameters[foundIndex].clee = this.param.clee;
+          this.ListParameters[foundIndex].paramType = this.param.paramType;
+        } else {
+          // Ajouter un nouveau paramètre
+          this.addParameterpath(form);
+          this.param = new Parameterss();
+        }
+
+        // Mettre à jour les paramètres de "this.path"
+        this.path.parameters = this.ListParameters;
+      } else {
+        // La clé n'est pas unique, affichez un message ou effectuez d'autres actions nécessaires
+        console.log('La clé n\'est pas unique. Veuillez choisir une clé différente.');
+      }
     } else {
-      keysArray.push(this.fb.control(value));
+      // Si l'idPath est NaN, appelez simplement la fonction "addParameterpath"
+      if (isUnique) 
+      this.addParameterpath(form);
     }
+
+    // Réinitialiser "this.param" après avoir effectué les opérations
+    this.param = new Parameterss();
   }
 
-  get KeysFieldAsFormArray(): any {
-    return this.form.get('Keys') as FormArray;
-  }
+  isUniqueKey(Key: string, list: Parameterss[]): boolean {
+    const foundIndex = list.findIndex((element) => {
+      return element.clee === Key;
+    });
 
-  key(defaultValue: string = ''): FormGroup {
-    return this.fb.group({
-      Key: this.fb.control(defaultValue),
+    return foundIndex === -1; // Renvoie true si la clé est unique, sinon false.
+  }
+  affectPathToApp(pat: Path) {//-- REGISTER PATH
+    this.path.parameters = this.ListParameters;
+
+    const app = new application();
+    app.id = this.idApp;
+    this.path.application = app;
+    this.pathService.registerPath(this.path).subscribe((data) => {
+      this.path = data;
+    //  this.RedirectionTo(this.idPath);
+    if (!isNaN(this.idPath))
+      window.location.reload();
+    this.location.back();
     });
   }
-  addControl(): void {
-    this.KeysFieldAsFormArray.push(this.key());
-  }
-  remove(i: number): void {
-    this.KeysFieldAsFormArray.removeAt(i);
-  }
-  //*
-
-  formValue(): void {
-    this.path = this.resp;
-    console.log(this.path);
+  RedirectionTo(idPath:number){
+    if (!isNaN(idPath))
+      window.location.reload();
+    this.location.back();
  
-    this.keyss = this.form.value.Keys;
-    console.log("amir "+this.keyss);
-    this.pathService
-      .updateWithParameters(this.path)
-      .subscribe((response: any) => {
-        // console.log("add path :"+response);
-        for (let index = 0; index < this.keyss.length; index++) {
-          let newParmaters = new Parameterss();
-          newParmaters.clee = this.keyss[index]['Key'];
-          if (this.form.value.paramType == 'PATH_VARIABLE')
-            newParmaters.paramType = ParamType.PATH_VARIABLE;
-          else newParmaters.paramType = ParamType.QUERRY_PARAM;
-          console.log(newParmaters);
-          this.AddParamsAndAssign(newParmaters, response.id);
-          //console.log(this.keyss[index]);
+  }
+  
+  addParameterpath(form: NgForm) {
+    let parma: Parameterss = new Parameterss();
+    parma.clee = form.value.clee;
+
+    if (form.value.paramType == 'PATH_VARIABLE')
+      parma.paramType = ParamType.PATH_VARIABLE;
+    else parma.paramType = ParamType.QUERRY_PARAM;
+    this.ListParameters.push(parma);
+  
+  }
+  remove(param:Parameterss){//(Remove) delete From The DB
+    const foundIndex = this.ListParameters.findIndex((element) => {
+      return element.clee === param.clee;
+    });
+    if (foundIndex !== -1){
+    this.parmeterService.Delete(param.id).subscribe((data)=>{
+      window.location.reload();
+    });}
+    this.ListParameters=this.ListParameters.filter((elem)=> elem !==param)
+  }
+  /*confirm2(param:Parameterss) {
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this Application?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.parmeterService.Delete(param.id).subscribe(
+          () => {
+            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
+            this.routerr.navigate(['updatePath/'+this.idPath]);// Rediriger vers la liste des applications après la suppression
+            
+            setTimeout(() => {
+              window.location.reload();
+            }, 900);
+          },
+          error => {
+            console.error('An error occurred while deleting the application.', error);
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'An error occurred while deleting the application.' });
+          }
+        );
+      },
+      reject: (type: ConfirmEventType) => {
+        switch (type) {
+          case ConfirmEventType.REJECT:
+            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+            this.routerr.navigate(['updatePath/'+this.idPath]); // Rediriger vers la liste des applications après la suppression
+            setTimeout(() => {
+              this.routerr.navigate(['updatePath/'+this.idPath]);
+            }, 900);
+            break;
+          case ConfirmEventType.CANCEL:
+            this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+            this.routerr.navigate(['updatePath/'+this.idPath]); // Rediriger vers la liste des applications après la suppression
+            setTimeout(() => {
+              this.routerr.navigate(['updatePath/'+this.idPath]);
+            }, 900);
+            break;
         }
-             for (let index = 0; index < this.resp.parameters.length; index++) {
-        this.parametersService
-          .Delete(response.parameters[index]['id'])
-          .subscribe((data) => {
-            console.log('Deleted : / ');
-          });
       }
-      this.success=true;
-      this.location.back();
-      });
+    });
+  }*/
 
-    // this.Addpath();
-  }
-
-  AddParamsAndAssign(par: Parameterss, id: number) {
-    this.parametersService
-      .addParamsAndAssignToPaths(par, id)
-      .subscribe((response: any) => {
-        console.log(this.path);
-      });
-  }
 }

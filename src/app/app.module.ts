@@ -26,6 +26,9 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { LinkBetwenComponent } from './link-betwen/link-betwen.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +47,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UpdatePathComponent,
     WellDoneComponent,
     WarningComponent,
-    UpdateAppComponent
+
+    UpdateAppComponent,
+    LinkBetwenComponent
+
 
 
 
@@ -61,7 +67,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ConfirmDialogModule,
     ConfirmDialogModule,
     ToastModule,
-    BrowserAnimationsModule
+
+    BrowserAnimationsModule,
+    
+
 
   ],
   providers: [ConfirmationService, MessageService],

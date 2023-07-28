@@ -13,6 +13,9 @@ import { UpdatePathComponent } from './BackOffice/update-path/update-path.compon
 import { WarningComponent } from './warning/warning.component';
 import { WellDoneComponent } from './well-done/well-done.component';
 
+import { LinkBetwenComponent } from './link-betwen/link-betwen.component';
+
+
 const routes: Routes = [{
   path: 'admin', component: AlltemplatesadminComponent, children: [
 
@@ -26,17 +29,22 @@ const routes: Routes = [{
   },
   {path:"Addapplication", component:AjoutAppComponent  
 },
-{path:"Detailsapp/:id", component:DetailsAppComponent  
+
+{ path: "Detailsapp/:idApp", component: DetailsAppComponent },
+
+// Add Path Parameters
+{ path: "Detailsapp/:idApp/updatePath/:id", component: UpdatePathComponent },
+{
+  path: 'Path/:idApp', component: UpdatePathComponent
 },
+
 {path:"updateApp", component:UpdateAppComponent  
 },
+
+
 {
-  path: 'Path/:id', component: PathComponent
-},
-{
-  path: 'updatePath/:id', component: UpdatePathComponent
-},
-{
+
+
   path: 'Warnign', component: WarningComponent
 },
 {

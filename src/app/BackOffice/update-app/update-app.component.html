@@ -46,7 +46,7 @@
     </div>
   </form>
 -->
--->
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -56,7 +56,9 @@
 <form form #carForm="ngForm">
           <div class="form">
               <div class="note">
-                  <p> This is an Application Register .</p>
+
+                  <p> Update Application.</p>
+
               </div>
 
               <div class="form-content">
@@ -75,10 +77,9 @@
                             placeholder="Description *" [(ngModel)]="app.description" >-->
                           </div>
                           <div class="form-group">
-                            <input type="date"placeholder="date *" class="form-control" name="wheight" [(ngModel)]="app.date" required>
-                          </div>
-                          <div class="form-group">
-                            <input type="text"placeholder="Note *" class="form-control" name="wheight" [(ngModel)]="app.note" required>
+
+                            <input type="url" placeholder="basicUrl *" class="form-control" name="wheight" [(ngModel)]="app.basicUrl" required>
+
                           </div>
                       </div>
                       <!-- Col 2 -->
@@ -92,9 +93,9 @@
                           <div class="form-group">
                             <input type="text"placeholder="protocol *" class="form-control" name="wheight" [(ngModel)]="app.protocol" required>
                           </div>
-                          <div class="form-group">
-                            <input type="url" placeholder="basicUrl *" class="form-control" name="wheight" [(ngModel)]="app.basicUrl" required>
-                          </div>
+
+                         
+
                           </div>
                      
                       </div>

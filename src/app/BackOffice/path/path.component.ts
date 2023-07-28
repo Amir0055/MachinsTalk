@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormArray, FormBuilder, NgForm, Validators} from "@angular/forms";
+
+import { NgForm} from "@angular/forms";
+import { Location } from '@angular/common';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { ParamType } from 'src/app/entities/ParamType';
 import { Parameterss } from 'src/app/entities/Parameterss';
@@ -8,6 +11,7 @@ import { application } from 'src/app/entities/application';
 import { ApplicationService } from 'src/app/services/application.service';
 import { ParametersService } from 'src/app/services/parameters.service';
 import { PathService } from 'src/app/services/path.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-path',
@@ -20,6 +24,11 @@ export class PathComponent implements OnInit{
   ListParameters: Parameterss[] = [];
 
   constructor(private pathService: PathService,private router: ActivatedRoute,
+
+    private parmeterService:ParametersService,
+ 
+    private location: Location,
+
     private routerr: Router) {}
     
   ngOnInit(): void {
@@ -38,6 +47,9 @@ export class PathComponent implements OnInit{
     this.pathService.registerPath(this.path).subscribe((data) => {
     this.path=data;
     console.log(this.path)
+
+    this.location.back();
+
     });
 
   }
@@ -54,15 +66,20 @@ export class PathComponent implements OnInit{
 
 
   registerParmaPath(path: Path){
-   
 
     this.pathService.registerPath(path).subscribe((data)=>{
       console.log(data);
       
       });
-
   }
 
+  remove(id:number){
+    this.parmeterService.Delete(id).subscribe((data)=>{
+
+    });
+
+
+  }
 
 
 

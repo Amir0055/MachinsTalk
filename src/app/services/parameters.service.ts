@@ -14,13 +14,16 @@ export class ParametersService {
   getAllParamters() {
     return this.http.get<any>(this.baseUrl + '/parameters');
   }
-
+ GetbyId(id: number){
+  return this.http.get<any>(this.baseUrl + '/parameters'+id);
+ }
   public registerParamters(request: Parameterss) {
     return this.http.post<Parameterss>(this.baseUrl + '/parameters', request);
   }
   public Delete(id: number) {
     return this.http.delete<Parameterss>(this.baseUrl + '/parameters/'+ id );
   }
+
   public addParamsAndAssignToPaths(request: Parameterss,id: number) {
     return this.http.post<Parameterss>(this.baseUrl + '/parameters/'+id, request);
   }
