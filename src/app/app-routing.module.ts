@@ -12,7 +12,9 @@ import { DropDownInputsComponent } from './drop-down-inputs/drop-down-inputs.com
 import { UpdatePathComponent } from './BackOffice/update-path/update-path.component';
 import { WarningComponent } from './warning/warning.component';
 import { WellDoneComponent } from './well-done/well-done.component';
+
 import { LinkBetwenComponent } from './link-betwen/link-betwen.component';
+
 
 const routes: Routes = [{
   path: 'admin', component: AlltemplatesadminComponent, children: [
@@ -41,6 +43,8 @@ const routes: Routes = [{
 
 
 {
+
+
   path: 'Warnign', component: WarningComponent
 },
 {

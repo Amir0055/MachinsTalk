@@ -16,9 +16,11 @@ export class PathService {
   findById(id:number){
     return this.http.get<any>(this.baseUrl + '/paths/'+id);
   }
+
  findByApplication_Id( id:number){
   return this.http.get<any>(this.baseUrl + '/paths/ListPathByApplicationId/'+id);
  }
+
 
   public registerPath(request: Path) {
     return this.http.post<Path>(this.baseUrl + '/paths', request);

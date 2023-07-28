@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { NgForm} from "@angular/forms";
 import { Location } from '@angular/common';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { ParamType } from 'src/app/entities/ParamType';
 import { Parameterss } from 'src/app/entities/Parameterss';
@@ -22,9 +24,11 @@ export class PathComponent implements OnInit{
   ListParameters: Parameterss[] = [];
 
   constructor(private pathService: PathService,private router: ActivatedRoute,
+
     private parmeterService:ParametersService,
  
     private location: Location,
+
     private routerr: Router) {}
     
   ngOnInit(): void {
@@ -43,7 +47,9 @@ export class PathComponent implements OnInit{
     this.pathService.registerPath(this.path).subscribe((data) => {
     this.path=data;
     console.log(this.path)
+
     this.location.back();
+
     });
 
   }
@@ -60,6 +66,7 @@ export class PathComponent implements OnInit{
 
 
   registerParmaPath(path: Path){
+
     this.pathService.registerPath(path).subscribe((data)=>{
       console.log(data);
       
@@ -73,6 +80,7 @@ export class PathComponent implements OnInit{
 
 
   }
+
 
 
 

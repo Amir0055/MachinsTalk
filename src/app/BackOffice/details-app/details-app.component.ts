@@ -14,8 +14,10 @@ export class DetailsAppComponent  implements OnInit{
 id !:number
 app !:application;
 
+
 constructor(private _service: ApplicationService,private srv: PathService,
   private router: ActivatedRoute,   private route: Router) { }
+
 ngOnInit(): void {
  this.router.params.subscribe(params=>{
 this.id=+params['idApp'];
@@ -41,15 +43,18 @@ private getAppData(): void {
 redirectToUpdate(){
   this.route.navigate(['admin/updateApp']);
 } 
+
 deletee(path:Path)  {
   this._service.deletee(path.id).subscribe(
     () => {
+
       // Do any additional handling of the response here
       window.location.reload();
       this.route.navigate(['admin/DetailsApp']);
     },
     );
 }
+
 listPaths(){
   this.srv.findByApplication_Id(this.id).subscribe((data)=>{
     console.log(data);
@@ -59,5 +64,6 @@ listPaths(){
     console.error('Error while fetching paths:', error);
   })
 }
+
 
 }

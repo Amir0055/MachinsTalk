@@ -1,20 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { ParamType } from 'src/app/entities/ParamType';
 import { Parameterss } from 'src/app/entities/Parameterss';
 import { Path } from 'src/app/entities/Path';
 import { ParametersService } from 'src/app/services/parameters.service';
 import { PathService } from 'src/app/services/path.service';
 import { Location } from '@angular/common';
+
 import { application } from 'src/app/entities/application';
 import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-update-path',
   templateUrl: './update-path.component.html',
   styleUrls: ['./update-path.component.css'],
 })
 export class UpdatePathComponent implements OnInit {
+
   idPath!: number;
   idApp!: number;
   path: Path = new Path();
@@ -215,4 +220,5 @@ export class UpdatePathComponent implements OnInit {
       }
     });
   }*/
+
 }
