@@ -7,7 +7,7 @@ import { ApplicationService } from 'src/app/services/application.service';
 @Component({
   selector: 'app-application',
   templateUrl: './application.component.html',
-  styleUrls: ['./application.component.scss']
+  styleUrls: ['./application.component.css']
 })
 export class ApplicationComponent implements OnInit {
   list_app:any;

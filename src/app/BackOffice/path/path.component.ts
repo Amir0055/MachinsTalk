@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {FormArray, FormBuilder, Validators} from "@angular/forms";
-import { Router } from '@angular/router';
+import { NgForm} from "@angular/forms";
+import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ParamType } from 'src/app/entities/ParamType';
 import { Parameterss } from 'src/app/entities/Parameterss';
 import { Path } from 'src/app/entities/Path';
+import { application } from 'src/app/entities/application';
+import { ApplicationService } from 'src/app/services/application.service';
 import { ParametersService } from 'src/app/services/parameters.service';
 import { PathService } from 'src/app/services/path.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-path',
@@ -12,77 +17,69 @@ import { PathService } from 'src/app/services/path.service';
   styleUrls: ['./path.component.css']
 })
 export class PathComponent implements OnInit{
+  idApp!: number;
   path : Path = new Path();
-  param : Parameterss= new Parameterss();
-  keyss! :any;
-  constructor(private fb: FormBuilder,private parametersService: ParametersService,private pathService: PathService,private router :Router) {}
+  ListParameters: Parameterss[] = [];
+
+  constructor(private pathService: PathService,private router: ActivatedRoute,
+    private parmeterService:ParametersService,
+ 
+    private location: Location,
+    private routerr: Router) {}
+    
   ngOnInit(): void {
-   
+    this.router.params.subscribe(params=>{
+      this.idApp=+params['id'];
+       });
   }
 
-  form = this.fb.group({
-    name: [
-      '',
-      {
-       // validators: [Validators.required, Validators.pattern("")],
-      },
-    ],
-    path: ['',
-      //[Validators.required, Validators.minLength(8)]
-    ],
-    TypeReq: ['',
-      //[Validators.required, Validators.minLength(8)]
-    ],
-    Keys: this.fb.array([]),
 
-  });
-  get KeysFieldAsFormArray(): any {
-    return this.form.get('Keys') as FormArray;
-  }
-
-  key(): any {
-    return this.fb.group({
-      Key: this.fb.control(''),
+  affectPathToApp(pat: Path) {
+    this.path.parameters = this.ListParameters;
+    const app = new application();
+    app.id = this.idApp;
+    this.path.application = app;
+    //console.log("Before Register     :"+this.path)
+    this.pathService.registerPath(this.path).subscribe((data) => {
+    this.path=data;
+    console.log(this.path)
+    this.location.back();
     });
+
   }
-  addControl(): void {
-    this.KeysFieldAsFormArray.push(this.key());
-  }
-  remove(i: number): void {
-    this.KeysFieldAsFormArray.removeAt(i);
+  
+  addParameterpath(form: NgForm){
+    let parma: Parameterss = new Parameterss();
+    parma.clee=form.value.clee;
+    // this.path.parameters.push(parma);
+    if (form.value.paramType == 'PATH_VARIABLE')
+    parma.paramType = ParamType.PATH_VARIABLE;
+    else parma.paramType = ParamType.QUERRY_PARAM;
+    this.ListParameters.push(parma);
   }
 
 
-  formValue(): void {
-    console.log(this.form.value);
-    this.keyss=this.form.value.Keys;
-    this.pathService.registerPath(this.path)
-    .subscribe((response: any) => {
-     // console.log(response);
-     for (let index = 0; index < this.keyss.length; index++) {
-      let newParmaters= new Parameterss();
-      newParmaters.clee=   this.keyss[index]["Key"] ;
-      console.log(newParmaters);
-      this.AddParamsAndAssign(newParmaters,response.id)
-      //console.log(this.keyss[index]);
-    }
-    });
-   // this.Addpath();
+  registerParmaPath(path: Path){
+    this.pathService.registerPath(path).subscribe((data)=>{
+      console.log(data);
+      
+      });
   }
-  Addpath() {
-    this.pathService.registerPath(this.path)
-    .subscribe((response: any) => {
-      console.log(response);
+
+  remove(id:number){
+    this.parmeterService.Delete(id).subscribe((data)=>{
+
     });
 
 
   }
-  AddParamsAndAssign(par: Parameterss,id :number) {
-    this.parametersService.addParamsAndAssignToPaths(par,id)
-    .subscribe((response: any) => {
-      console.log(response);
-    });
 
 
-  }
+
+
+
+
+
+
+
 }

@@ -1,7 +1,7 @@
 enum RequestType {
-    GET,
-    POST,
-    PUT,
-    DELETE,
+    get,
+    post,
+    put,
+    delete,
 
   }

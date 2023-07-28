@@ -30,8 +30,9 @@ export class UpdateAppComponent implements OnInit{
   getByid(id:number){
     this._service.findById(id)  .subscribe(
       (response) => {
-     this.app=response;
     
+    // this.app.date = new Date(response.date).toISOString().split('T')[0];
+     this.app=response;
       },
       (error) => {
         this.error = error.error.message;
@@ -40,8 +41,9 @@ export class UpdateAppComponent implements OnInit{
   }
   
   ngOnInit(): void {
-    console.log(this.app)
+    
     this.getByid(this._service.idApp);
+    console.log(this.app)
 
   }
 
