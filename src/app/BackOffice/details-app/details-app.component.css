@@ -732,7 +732,6 @@ h1 {
    background-color: #67d4ea;
    box-shadow: 0px -1px 5px 0px #67d4ea;
   }
-
  }
  &:nth-child(2):before {
   right: 12px;
@@ -1049,7 +1048,15 @@ h1 {
  }
 }
 
+.delete-icon {
+  color: red;
+  border: #c31c1c;
  
+}
+.edit-icon {
+  color: #36ad50;
+  border: #36ad50;
+}
  
   .btn-info {
     color: #fff;
@@ -1057,4 +1064,35 @@ h1 {
     border-color: #1cc88a;
     left: 100px;
     width: 5Opx;
+}
+.go-back-button {
+  background-color: #007bff; /* Blue background color */
+  color: #fff; /* White text color */
+  padding: 10px 20px; /* Adjust padding as needed */
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  font-size: 16px; /* Adjust font size as needed */
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* Styling for the arrow icon */
+.go-back-arrow {
+  width: 10px; /* Adjust the arrow size as needed */
+  height: 10px;
+  fill: #fff; /* Arrow color (white) */
+  margin-right: 5px; /* Add some spacing between the arrow and text */
+  vertical-align: middle;
+}
+.go-button{
+  background-color: #b1cf2f; /* Blue background color */
+  color: #fff; /* White text color */
+  padding: 10px 20px; /* Adjust padding as needed */
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  font-size: 16px; /* Adjust font size as needed */
+  cursor: pointer;
+  display: inline-flexbox;
+  margin-left: 1100px;
+  
 }

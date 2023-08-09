@@ -1,4 +1,4 @@
-enum RequestType {
+export enum RequestType {
     get,
     post,
     put,

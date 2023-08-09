@@ -72,6 +72,6 @@ export class ApplicationComponent implements OnInit {
   }
   redirectToadd(){
 
-    this.router.navigate(['admin/Addapplication']);
+    this.router.navigate(['admin/updateApp']);
   }
 }

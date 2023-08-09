@@ -1,15 +1,12 @@
-
-
-
-
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 
 <div class="container register-form">
-  <form #pathForm="ngForm">
+  <form #pathForm="ngForm"  >
             <div class="form" >
                 <div class="note">
                     <p> This is a Path Register .</p>
@@ -21,19 +18,29 @@
                         <div class="col-md-6">
                           <h3 style="color: rgba(64, 64, 255, 0.607);"> Path :</h3>
                             <div class="form-group">
-                              <input type="text" name="name" class="form-control"
-                                placeholder="name *" [(ngModel)]="path.name" >
+                              <input type="text" name="name" class="form-control" ngModel
+                                placeholder="name *" [(ngModel)]="path.name" #name ="ngModel"  required>
+                            </div>
+                            <div class="alert alert-danger" *ngIf="name.touched && !name.valid">
+                                 <div class="error-message" *ngIf="name.errors?.['required']">
+                                  Name Path can't be blank 
+                                   </div>
                             </div>
                             <div class="form-group">
                               <input  type="text" name="path" class="form-control"
-                              placeholder="le path *" [(ngModel)]="path.path" >
+                              placeholder="URL *" [(ngModel)]="path.path" #pathh ="ngModel"    required>
                             </div>
+                            <div class="alert alert-danger" *ngIf="pathh.touched && !pathh.valid">
+                              <div class="error-message" *ngIf="pathh.errors?.['required']">
+                               Url can't be blank 
+                                </div>
+                         </div>
                             <div class="form-group">
-                            <select  class="form-control"name="requestType" id="inputGroupSelect01" [(ngModel)]="path.requestType" >
+                            <select  class="form-control"name="requestType" id="inputGroupSelect02" [(ngModel)]="path.requestType" >
                               <option value="get">GET</option>
                               <option value="post">POST</option>
                               <option value="put">PUT</option>
-                              <option value="delete">DELET</option>
+                              <option value="delete">DELETE</option>
                             </select> 
                           </div>
                         </div>
@@ -47,31 +54,46 @@
 
                              
                                   <div  class="input-field" >
-                                    <input  type="text" name="clee" [(ngModel)]="param.clee"  class="form-control"
-                                           placeholder="Key *"  >
-                                  </div>
-                                
-                              
-                              
-                             
-                              <button  class="btnAdd" (click)="MakeChange(pathForm)"    > + </button> 
-                            </div>
-                              <div class="form-group">
+                                    <input  type="text" name="clees" [(ngModel)]="param.clee"  class="form-control"
+                                           placeholder="Key *" #Paramss = "ngModel" ngModel   >
+                                  </div>    </div>
+                                    <!-- Display the error message if the key is not unique -->
+                        
+                                        <div class="error-message" *ngIf="isKeyNotUnique">
+                                          Key Value can't be duplicated
+                                           </div>
+                           
+                                          
+                                   
+                           
+                
+                           
+                            <div class="form-group">
+                           
+                          </div> <div class="form-group">
                               <select class="form-control" [(ngModel)]="param.paramType"  name="paramType" id="inputGroupSelect01"  >
                                 <option value="QUERRY_PARAM">QUERRY_PARAM</option>  
                                 <option value="PATH_VARIABLE">PATH_VARIABLE</option>
                               </select>
                               </div>
-                    
+                              <p-toast></p-toast> 
+                              <button  class="btnAdd" (click)="MakeChange(pathForm)"   [disabled]="Paramss.invalid || !param.clee"
+                              [ngClass]="{'btnAddOff': Paramss.invalid || !param.clee}"
+                              > + </button> 
                             </div>
                        
                         </div>
                     </div>
-                    <button type="button" class="btnSubmit" (click)="affectPathToApp(path)" [disabled]="pathForm.invalid" >Submit</button>
+                   
                 </div>
           
             </form>
         </div>
+
+
+
+
+
         <!-- Editable table -->
 <div class="card">
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
@@ -93,21 +115,21 @@
         <tbody>
           <tr *ngFor="let item of ListParameters" ><!-- For-->
 
-            <td class="pt-3-half" contenteditable="true">{{item.clee}}</td>
-            <td class="pt-3-half" contenteditable="true">{{item.paramType}}</td>
+            <td class="pt-3-half" >{{item.clee}}</td>
+            <td class="pt-3-half" >{{item.paramType}}</td>
           
             
             <td>
-              <p-toast></p-toast> 
+
               <p-confirmDialog></p-confirmDialog>
               <span class="table-remove"
-                ><button type="button" class="btn btn-danger" (click)="remove (item)">
+                ><button type="button" class="fas fa-trash-alt delete-icon"  (click)="remove (item)">
                   Remove
                 </button></span>
              
                 <span class="table-remove" style="margin-left: 20px;"
-                ><button type="button" class="btn btn-success"  (click)="setParametersData(item)" >
-                  Update
+                ><button type="button" class="fas fa-pencil-alt edit-icon"  (click)="setParametersData(item)" >
+                  Edit
                 </button></span>
             </td>
           </tr>
@@ -122,4 +144,13 @@
     </div>
   </div>
 </div>
-<!-- Editable table -->
+<div class="submit-button">
+  <button class="go-back-button" (click)="goBack()">
+    <i class="fas fa-arrow-left"></i> Go Back
+  </button>
+<button type="submit" class="btnSubmit" [disabled]="!pathForm.valid" (click)="submited(path)"  >Submit</button>
+</div>
+
+<div>
+
+</div>

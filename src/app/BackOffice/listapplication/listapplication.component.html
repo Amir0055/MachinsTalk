@@ -1,5 +1,9 @@
+<button  (click)="redirectToadd()" class="btn btn-success"> Add </button>
+<p-toast></p-toast> 
 <div class="wrapper">
+  
   <div class="container">
+    
    <tr *ngFor="let application of list_app">
     <!-- Box [1] -->
     <div class="box">
@@ -16,9 +20,7 @@
   <p-toast></p-toast> 
   <p-confirmDialog></p-confirmDialog>
   <p-button type="button" (click)="confirm2(application)"  class="btn btn-primary" label="Delete" class="p-button-danger"></p-button>
-
 </div></div>    
-
      </div>
      
       </tr>

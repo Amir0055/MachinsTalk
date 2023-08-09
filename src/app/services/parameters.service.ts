@@ -23,7 +23,7 @@ export class ParametersService {
   public Delete(id: number) {
     return this.http.delete<Parameterss>(this.baseUrl + '/parameters/'+ id );
   }
-
+ 
   public addParamsAndAssignToPaths(request: Parameterss,id: number) {
     return this.http.post<Parameterss>(this.baseUrl + '/parameters/'+id, request);
   }

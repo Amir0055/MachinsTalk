@@ -1,0 +1,313 @@
+.note
+{
+    text-align: center;
+    height: 80px;
+    background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+    color: #fff;
+    font-weight: bold;
+    line-height: 80px;
+}
+.noteA
+{
+    text-align: center;
+ 
+    color: #d8347b;
+    font-weight: bold;
+  
+}
+.form-content
+{
+    padding: 5%;
+    border: 1px solid #ced4da;
+    margin-bottom: 2%;
+}
+.form-control{
+    border-radius:1.5rem;
+}
+.btnSubmit
+{
+    left: 1000px;
+    border:none;
+    border-radius:1.52rem;
+    padding: 1%;
+    width: 20%;
+    cursor: pointer;
+    background: #0062cc;
+    color: #fff;
+ 
+}
+.submit-button {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.btnAdd
+{
+
+    border:none;
+    border-radius:1.5rem;
+    padding: 1%;
+    width: 20%;
+    cursor: pointer;
+    background: #0ecc00;
+    color: #fff;
+ 
+   
+   
+}
+.delete-icon {
+    color: red;
+    border: #c31c1c;
+   
+  }
+  .edit-icon {
+    color: #36ad50;
+    border: #36ad50;
+  }
+.btnRemove
+{
+    border:none;
+    border-radius:1.5rem;
+    padding: 1%;
+    width: 20%;
+    cursor: pointer;
+    background: #cc0a00;
+    color: #eae2e2;
+}
+.fas fa-trash-alt{
+    background: #cc0a00;
+   
+}
+.go-back-button {
+    background-color: #007bff; /* Blue background color */
+    color: #fff; /* White text color */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Adjust font size as needed */
+    cursor: pointer;
+    display: inline-block;
+  }
+  
+  /* Styling for the arrow icon */
+  .go-back-arrow {
+    width: 10px; /* Adjust the arrow size as needed */
+    height: 10px;
+    fill: #fff; /* Arrow color (white) */
+    margin-right: 5px; /* Add some spacing between the arrow and text */
+    vertical-align: middle;
+  }
+  .form-control.ng-touched.ng-invalid {
+    border-left: 5px solid red;
+    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2);
+  }
+  .form-control.ng-valid {
+    border-left: 6px solid greenyellow;
+    box-shadow: 0 0 0 2px rgba(50, 205, 50, 0.2);
+  }
+  .error-message{
+color: red;
+font-size: 12px;
+margin-top: 5px;
+  }
+  .btnAddOff
+{
+    border:none;
+    border-radius:1.5rem;
+    padding: 1%;
+    width: 20%;
+    cursor: pointer;
+    background: #c3c3c3;
+    color: #fff;
+}
+.go-back-button {
+    background-color: #007bff; /* Blue background color */
+    color: #fff; /* White text color */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Adjust font size as needed */
+    cursor: pointer;
+    display: inline-block;
+  }
+  
+  /* Styling for the arrow icon */
+  .go-back-arrow {
+    width: 10px; /* Adjust the arrow size as needed */
+    height: 10px;
+    fill: #fff; /* Arrow color (white) */
+    margin-right: 5px; /* Add some spacing between the arrow and text */
+    vertical-align: middle;
+  }
+  btn btn-success{
+    left : 1000px;
+    width: 100px;
+  }
+  btn btn-d{
+    width: 100px;
+  }
+  * {
+    font-family: Lato;
+    --transition: 0.15s;
+    --border-radius: 0.5rem;
+    --background: #ffc107;
+    --box-shadow: #ffc107;
+  
+  }
+  
+  .cont-bg {
+    min-height: 100vh;
+    background-image: radial-gradient(
+      circle farthest-corner at 7.2% 13.6%,
+      rgba(37, 249, 245, 1) 0%,
+      rgba(8, 70, 218, 1) 90%
+    );
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cont-main {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+  }
+  
+  .cont-checkbox {
+    width: 200px;
+    height: 250px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    transition: transform var(--transition);
+    background: white;
+    margin-bottom: 0.75rem;
+    margin-right: 0.75rem;
+    &:active {
+      transform: scale(0.9);
+    }
+    input {
+      display: inline-block;
+      &:checked + label {
+        opacity: 1;
+        box-shadow: 3 0 0 0px var(--background);
+        .cover-checkbox {
+          opacity: 1;
+          transform: scale(1);
+          svg {
+            stroke-dashoffset: 0;
+          }
+        }
+        img {
+          -webkit-filter: none; /* Safari 6.0 - 9.0 */
+          filter: none;
+        }
+      }
+    }
+    label {
+      cursor: pointer;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      opacity: 0.6;
+      
+      img {
+        width: 100%;
+        height: 70%;
+        object-fit: cover;
+        clip-path: polygon(0% 0%, 100% 0, 100% 81%, 50% 100%, 0 81%);
+        -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(100%);
+      }
+      .cover-checkbox {
+        box-shadow: 0 0 0 3px #6598e5;
+        position: absolute;
+        right: 5px;
+        top: 3px;
+        z-index: 1;
+        width: 23px;
+        height: 23px;
+        border-radius: 50%;
+        background: var(--box-shadow);
+        border: 2px solid #fff;
+        transition: transform var(--transition),
+          opacity calc(var(--transition) * 1.2) linear;
+        opacity: 0;
+        transform: scale(0);
+        svg {
+          width: 13px;
+          height: 11px;
+          display: inline-block;
+          vertical-align: top;
+          fill: none;
+          margin: 5px 0 0 3px;
+          stroke: #fff;
+          stroke-width: 2;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          stroke-dasharray: 16px;
+          transition: stroke-dashoffset 0.4s ease var(--transition);
+          stroke-dashoffset: 16px;
+        }
+      }
+      .info {
+        text-align: center;
+        margin-top: 0.2rem;
+        font-weight: 600;
+        font-size: 0.8rem;
+
+      }
+    }
+  }
+  .cont-checkbox {
+    display: inline-block;
+    margin: 40px;
+    box-shadow: 0 0 0 3px #d740bf;
+  
+    input[type="radio"] {
+      display: inline-block;
+ 
+
+    }
+  
+    label {
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 0 0 3px #d740bf;
+  
+      .img {
+        width: 100px;
+        height: 100px;
+        border: 2px solid transparent;
+        transition: border-color 0.3s;
+  
+        &:hover {
+          border-color: #007bff;
+        }
+      }
+  
+      .info {
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 1px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 80%;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+  
+      &:hover .info {
+        opacity: 1;
+      }
+    }
+  }
+  .col-md-6{
+    padding: 40px;
+  }

@@ -1,52 +1,3 @@
-<!--<br>
-<br>
-<br>
-<section  class="vh-100" style="background-color: rgb(236, 236, 224);">
-    <div class="container py-5 h-100">
-      <div class="row d-flex align-items-center justify-content-center h-100">
-        
-        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-          <h3>Modify Application...</h3>
-<form #carForm="ngForm" >
-    <div class="form-group">
-      <label>Name</label>
-      <input type="text" name="description" class="form-control" [(ngModel)]="app.name" required>
-    </div>
-  
-    <div class="form-group">
-      <label>Description</label>
-      <input type="text" class="form-control" name="volume" [(ngModel)]="app.description" required>
-    </div>
-  
-    <div class="form-group">
-      <label>Date</label>
-      <input type="date" class="form-control" name="wheight" [(ngModel)]="app.date" required>
-    </div>
-  
-    <div class="form-group">
-        <label>Note</label>
-        <input type="text" class="form-control" name="wheight" [(ngModel)]="app.note" required>
-      </div>
-      <div class="form-group">
-        <label>numPort</label>
-        <input type="text" class="form-control" name="wheight" [(ngModel)]="app.numPort" required>
-      </div>
-      <div class="form-group">
-        <label>Protocol</label>
-        <input type="text" class="form-control" name="wheight" [(ngModel)]="app.protocol" required>
-      </div>
-  
-      <div class="form-group">
-        <label>BasicUrl</label>
-        <input type="url" class="form-control" name="wheight" [(ngModel)]="app.basicUrl" required>
-      </div>
-  
-    <div class="form-group">
-      <button class="btn btn-danger btn-block" (click)="onSubmit()"  routerLink="/admin/listapp">Save </button>
-    </div>
-  </form>
--->
-
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -54,57 +5,87 @@
 
 <div class="container register-form">
 <form form #carForm="ngForm">
-          <div class="form">
-              <div class="note">
+  <div class="form">
+    <div class="note">
+        <p> {{operation}}</p>
+    </div>
 
-                  <p> Update Application.</p>
-
-              </div>
-
-              <div class="form-content">
-                  <div class="row">
-                          <!-- Col 1 -->
-                      <div class="col-md-6">
-                        <h3 style="color: rgba(64, 64, 255, 0.607);"> Modification :</h3>
-                          <div class="form-group">
-                          <input type="text"placeholder="name *" name="description" class="form-control" [(ngModel)]="app.name" required>
-                             <!-- <input  type="name" name="name" class="form-control"
-                              placeholder="name *" [(ngModel)]="app.name" >-->
-                          </div>
-                          <div class="form-group">
-                            <input type="text"placeholder="Description *" class="form-control" name="volume" [(ngModel)]="app.description" required>
-                           <!-- <input  type="desscription" class="form-control"
-                            placeholder="Description *" [(ngModel)]="app.description" >-->
-                          </div>
-                          <div class="form-group">
-
-                            <input type="url" placeholder="basicUrl *" class="form-control" name="wheight" [(ngModel)]="app.basicUrl" required>
-
-                          </div>
+    <div class="form-content">
+        <div class="row">
+                <!-- Col 1 -->
+            <div class="col-md-6">
+              <h3 style="color: rgba(64, 64, 255, 0.607);"> App :</h3>
+                <div class="form-group">
+                  <input type="text"placeholder="name *" name="name" ngModel #name ="ngModel" class="form-control" [(ngModel)]="app.name" pattern="^\S.*\S$" required>
+                </div>
+                <div class="alert alert-danger" *ngIf="name.touched && !name.valid">
+                  <div class="error-message" *ngIf="name.errors?.['required']">
+                   Name App can't be blank 
+                    </div>
+                    <div class="error-message" *ngIf="name.errors?.['pattern']">
+                      Name App can't consist of only spaces
                       </div>
-                      <!-- Col 2 -->
-                
-                      <div class="col-md-6">
-                   
-                          <h3 style="color: rgba(64, 64, 255, 0.607);"> _</h3>
-                          <div class="form-group">
-                            <input type="number" placeholder="numPort *" class="form-control" name="wheight" [(ngModel)]="app.numPort" required>
-                          </div>
-                          <div class="form-group">
-                            <input type="text"placeholder="protocol *" class="form-control" name="wheight" [(ngModel)]="app.protocol" required>
-                          </div>
-
-                         
-
-                          </div>
-                     
+                </div>
+                <div class="form-group">
+                  <input type="text"placeholder="Description *" class="form-control" ngModel #description ="ngModel"  name="description" [(ngModel)]="app.description" pattern="^\S.*\S$" required>
+                </div>
+                <div class="alert alert-danger" *ngIf="description.touched && !description.valid">
+                  <div class="error-message" *ngIf="description.errors?.['required']">
+                    Description can't be blank 
+                    </div>
+                    <div class="error-message" *ngIf="description.errors?.['pattern']">
+                      Description can't consist of only spaces
                       </div>
+                </div>
+                <div class="form-group">
+                  <input type="url" placeholder="basicUrl *" class="form-control" ngModel #basicUrl ="ngModel" name="basicUrl" [(ngModel)]="app.basicUrl" pattern="^\S.*\S$" required>
+                </div>
+                <div class="alert alert-danger" *ngIf="basicUrl.touched && !basicUrl.valid">
+                  <div class="error-message" *ngIf="basicUrl.errors?.['required']">
+                    Basic Url can't be blank 
+                    </div>
+                    <div class="error-message" *ngIf="basicUrl.errors?.['pattern']">
+                      basicUrl can't consist of only spaces
+                      </div>
+                </div>
+            </div>
+            <!-- Col 2 -->
+
+            <div class="col-md-6">
+
+                <h3 style="color: rgba(64, 64, 255, 0.607);"> _</h3>
+                <div class="form-group">
+                  <input type="number" placeholder="numPort *" class="form-control"ngModel #numPort ="ngModel"  name="numPort" [(ngModel)]="app.numPort"  min="1000" max="9999">              
                   </div>
+                  <div class="alert alert-danger" *ngIf="numPort.touched && !numPort.valid">
+                    <div class="error-message" *ngIf="numPort.errors?.['min']">
+                      minmum 4 chifres
+                      </div>
+                      <div class="error-message" *ngIf="numPort.errors?.['max']">
+                        maximum 4 chifres
+                        </div>
+                  </div>
+                  <div class="form-group">
+                  <input type="text"placeholder="protocol *" class="form-control"ngModel #protocol ="ngModel" name="protocol" [(ngModel)]="app.protocol" required pattern="^((http|https|mqtt)([a-z]*[A-Z][a-z]*)?)$">
+                </div>
+                <div class="alert alert-danger" *ngIf="protocol.touched && !protocol.valid">
+                  <div class="error-message" *ngIf="protocol.errors?.['required']">
+                    protocol Url can't be blank 
+                    </div>
+                    <div class="error-message" *ngIf="protocol.errors?.['pattern']">
+                    We only use http/mqtt protocol 
+                      </div>
+                </div>
+      
+            
+            </div>
+            </div>
+        </div>
+
+                  
         <button type="button" class="btnSubmit" (click)="onSubmit()" routerLink="/admin/listapp"
         [disabled]="carForm.invalid">Save</button>
       </div>
-
+      </form>
+      </div>
    
-   
-  </form>
-</div>

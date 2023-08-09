@@ -8,15 +8,13 @@ import { SidebaradminComponent } from './BackOffice/sidebaradmin/sidebaradmin.co
 import { HeaderadminComponent } from './BackOffice/headeradmin/headeradmin.component';
 import { FooteradminComponent } from './BackOffice/footeradmin/footeradmin.component';
 import { BodyadminComponent } from './BackOffice/bodyadmin/bodyadmin.component';
-
 import { ListapplicationComponent } from './BackOffice/listapplication/listapplication.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { AjoutAppComponent } from './BackOffice/ajoutApp/ajoutApp.component';
 import { ApplicationComponent } from './BackOffice/application/application.component';
 import { DetailsAppComponent } from './BackOffice/details-app/details-app.component';
 import { UpdateAppComponent } from './BackOffice/update-app/update-app.component';
-import { PathComponent } from './BackOffice/path/path.component';
+
 import { DropDownInputsComponent } from './drop-down-inputs/drop-down-inputs.component';
 import { UpdatePathComponent } from './BackOffice/update-path/update-path.component';
 import { WellDoneComponent } from './well-done/well-done.component';
@@ -26,14 +24,13 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { LinkBetwenComponent } from './link-betwen/link-betwen.component';
-
+import { SetUpComponent } from './BackOffice/set-up/set-up.component';
 @NgModule({
   declarations: [
     AppComponent,
     ApplicationComponent,
-    AjoutAppComponent,
+
     AlltemplatesadminComponent,
     SidebaradminComponent,
     HeaderadminComponent,
@@ -42,16 +39,14 @@ import { LinkBetwenComponent } from './link-betwen/link-betwen.component';
     ListapplicationComponent,
     DetailsAppComponent,
     UpdatePathComponent,
-    PathComponent,
+ 
     DropDownInputsComponent,
     UpdatePathComponent,
     WellDoneComponent,
     WarningComponent,
-
     UpdateAppComponent,
-    LinkBetwenComponent
-
-
+    LinkBetwenComponent,
+    SetUpComponent
 
 
   ],
@@ -67,10 +62,8 @@ import { LinkBetwenComponent } from './link-betwen/link-betwen.component';
     ConfirmDialogModule,
     ConfirmDialogModule,
     ToastModule,
-
     BrowserAnimationsModule,
     
-
 
   ],
   providers: [ConfirmationService, MessageService],

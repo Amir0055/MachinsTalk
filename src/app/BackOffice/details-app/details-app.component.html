@@ -169,7 +169,7 @@
       <div class="book-sum"> Port: {{app.numPort}}   <br>
        URL: {{app.basicUrl}}</div>
       <div class="btn-group">
-        <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" routerLink="/admin/updateApp"   >
+        <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" routerLink="/admin/updateApp/{{id}}"   >
             Update  
         </a>
 
@@ -209,12 +209,12 @@
                 
                 <td>
                   <span class="table-remove"
-                    ><button type="button" class="btn btn-danger btn-rounded btn-sm my-0"  (click)="deletee(path)" >
-                      Remove
+                    ><button type="button" class="fas fa-trash-alt delete-icon"  (click)="deletee(path)" >
+                      Delete
                     </button></span>
                  
                     <span class="table-remove"style="margin-left: 20px;"
-                    ><button type="button" class="btn btn-success"  routerLink="/admin/Detailsapp/{{id}}/updatePath/{{path.id}}" >
+                    ><button type="button" class="fas fa-pencil-alt edit-icon"  routerLink="/admin/Detailsapp/{{id}}/updatePath/{{path.id}}" >
                       Update
                     </button></span>
                 </td>
@@ -228,3 +228,9 @@
     </div>
   </div>
 </div>
+<button class="go-back-button" (click)="goBack()">
+  <i class="fas fa-arrow-left"></i> Go Back
+</button>
+<button class="go-button" (click)="goBackTest()">
+  <i class="fas fa-arrow-left"></i> Go For Test
+</button>

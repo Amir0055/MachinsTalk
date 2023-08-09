@@ -120,4 +120,8 @@ export class ListapplicationComponent {
       }
     });
   }
+  redirectToadd(){
+
+    this.router.navigate(['admin/AjoutApp']);
+  }
 }
