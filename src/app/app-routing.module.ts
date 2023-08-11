@@ -6,8 +6,7 @@ import {ListapplicationComponent} from './BackOffice/listapplication/listapplica
 import { DetailsAppComponent } from './BackOffice/details-app/details-app.component';
 import { UpdateAppComponent } from './BackOffice/update-app/update-app.component';
 import { UpdatePathComponent } from './BackOffice/update-path/update-path.component';
-import { WarningComponent } from './warning/warning.component';
-import { WellDoneComponent } from './well-done/well-done.component';
+
 import { SetUpComponent } from './BackOffice/set-up/set-up.component';
 
 const routes: Routes = [{
@@ -36,12 +35,7 @@ const routes: Routes = [{
 {path:"AjoutApp", component:UpdateAppComponent  
 },
 
-{
-  path: 'Warnign', component: WarningComponent
-},
-{
-  path: 'sucess', component: WellDoneComponent
-},
+
 
   ]
 }, {path: '', redirectTo: '/admin/home', pathMatch: 'full'}];

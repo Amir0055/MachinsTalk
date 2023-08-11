@@ -4,224 +4,246 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container ">
-<form form [formGroup]="SetupFrom" (ngSubmit)="onSubmit()">
-  <div class="form">
-    <div class="note">
-      <p> This is a Setup Register .</p>
-  </div>
-
-    <div class="form-content">
-        <div class="row">
-                <!-- Col 1 -->
-            <div class="col-md-6">
-              <h3 style="color: rgba(64, 64, 255, 0.607);"> Setup :</h3>
-                <div class="form-group">
-                  <input type="text"  placeholder="name *" id="name" name="name" formControlName="name" class="form-control">        
-                        </div>
-                
-            </div>
-            <!-- Col 2 -->
-
-            <div class="col-md-6">
-
-                <h3 style="color: rgba(64, 64, 255, 0.607);"> _</h3>
-                <div class="form-group">
-                  <input type="text" id="name" name="name" formControlName="cle"   class="form-control">                
-                        </div>
-
-                
-      
-      
-            
-            </div>
-            </div>
-        </div>
-        <div class="note">
-          <p> Enter your Scenario .</p>
+  <form form [formGroup]="SetupFrom" (ngSubmit)="onSubmit()">
+    <div class="form">
+      <div class="note">
+        <p> This is a Setup Register .</p>
       </div>
-                  
-         
-      <div class="form-group" formArrayName="scenarios">
-        <div class="form-group" *ngFor="let quantity of scenarios().controls; let i=index"  [formGroupName]="i">
 
-        <div class="form-content">
-            <div class="row">
-            <div class="col-md-6">
-        <div class="form-group" >
-          <input  type="text" placeholder="name *"   id="nameScn" name="nameScn"  formControlName="name" class="form-control" >
+      <div class="form-content">
+        <div class="row">
+          <!-- Col 1 -->
+          <div class="col-md-6">
+            <h3 style="color: rgba(64, 64, 255, 0.607);"> Setup :</h3>
+            <div class="form-group">
+              <input type="text" placeholder="name *" id="name" name="name" formControlName="name" class="form-control">
+            </div>
+
           </div>
-         
-        
-          
+          <!-- Col 2 -->
+
+          <div class="col-md-6">
+
+            <h3 style="color: rgba(64, 64, 255, 0.607);"> _</h3>
+            <div class="form-group">
+              <input type="text" id="name" name="name" formControlName="cle" class="form-control">
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="note">
+        <p> Enter your Scenario .</p>
+      </div>
+
+
+      <div class="form-group" formArrayName="scenarios">
+        <div class="form-group" *ngFor="let scenario of scenarios().controls; let i=index" [formGroupName]="i">
+
+          <div class="form-content">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" placeholder="name Scenario *" id="nameScn" name="nameScn" formControlName="name"
+                    class="form-control">
+                </div>
+                <div class="form-group" *ngFor="let parameter of ListParamters; let i = index">
+                  <div class="row" >
+                    <div class="col-md-6">
+                      <div class="form-group mb-1">
+                        Keys {{i+1}}:
+                        <input type="text" [value]="parameter.clee" readonly class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      Values {{i+1}}:
+                      <input type="text" #valueType (change)="setValueInPlace(i,valueType.value)" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                
+
+                <!--  
           <div class="form-group" >
         <input type="text" placeholder="erreurMsg *" formControlName="erreurMsg"  class="form-control">
-      </div>
+      </div>-->
+                <!--
       <div class="form-group" >
         <input type="text" placeholder="success *"  formControlName="success" class="form-control">
-</div>
-
+</div>-->
+                <!--
 <div class="form-group" >
         <input placeholder="pauseTime *" type="text" formControlName="pauseTime" class="form-control">
-      </div>
-      
-      
-    
-    
-    </div>
-    <div class="col-md-6">
-      <div class="form-group" >
+</div>-->
+              </div>
+              <div class="col-md-6">
+                <!-- <div class="form-group" >
         <input placeholder="duration *" type="text" formControlName="duration" class="form-control">
-       </div> 
-    
+       </div> -->
+                <!--
        <div class="form-group" >
        <input placeholder="tryMax *" type="number" formControlName="tryMax" class="form-control">
-      </div> 
-
+      </div> -->
+                <!--
       <div class="form-group" >
         <input placeholder="eapsedTime *" type="text" formControlName="eapsedTime" class="form-control">
- </div> 
- 
-        <div class="form-group">
-          <label>Select Path:</label>
-        <select class="form-control" formControlName="path">
-          <option *ngFor="let Path of pathOptions" [value]="Path">{{ Path}}
+ </div> -->
 
-          </option>
-        </select>
-      </div>
-    
-     
-    </div>
-  </div>
-  <div class="form-group"  >
-    
-  <div class="image-checkboxes-container"  id="inputGroupSelect02">
-   
-    <!-- Checkbox 1 --> 
-   
-    <div class="cont-checkbox">
-      <input  value="CAPACITY_TEST" #typeTest formControlName="typeTest" name="typeTest" type="radio" (change)="setValue(typeTest.value)" id="myCheckbox-1"  />
-      <label for="myCheckbox-1">
-        <img width="100" src="data:image/jpeg;base64,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" alt="LOGARITHMIC LOAD MODEL" />
-        
-        <div class="noteA">Capacity test</div>
+                <div class="form-group">
 
-      </label>
-      <div class="info">Desc: A constant number of virtual users (load) or requests are simulated throughout the test duration. This helps to measure how the system performs under a steady load.</div>
+                  <select class="form-control" formControlName="path" (change)="selectPath($event)">
+                    <option value="" disabled selected>Select a Path</option>
+                    <option *ngFor="let Path of pathOptions" [value]="Path.name">{{ Path.name}}
 
-    </div>
-  
-    <!-- Checkbox 2 -->
-    <div class="cont-checkbox">
-      <input value="SOAK_MODEL"  type="radio" id="myCheckbox-5" #typeTest5 formControlName="typeTest" (change)="setValue(typeTest5.value)" name="typeTest" />
-      <label for="myCheckbox-5">
-        <img width="100" src="data:image/jpeg;base64,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" alt="LOGARITHMIC LOAD MODEL" />
-        
-        <div class="noteA">Soak Load test</div>
-
-      </label>
-      <div class="info">Desc: This model involves applying a consistent load on the system for an extended period, typically several hours or even days (Endurance testing). </div>
-
-    </div>
-    <div class="cont-checkbox">
-      <input value="STRESS_LOAD_TEST" type="radio" id="myCheckbox-6" #typeTest6 formControlName="typeTest" (change)="setValue(typeTest6.value)" name="typeTest" />
-      <label for="myCheckbox-6">
-        <img width="100" src="data:image/jpeg;base64,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" alt="LOGARITHMIC LOAD MODEL" />
-        
-        <div class="noteA">Stress Load test</div>
-
-      </label>
-      <div class="info">Desc: It helps in determining the system’s maximum capacity and uncovering potential performance bottlenecks.</div>
-
-    </div>
-    <div>
-  </div>
-    <!-- Add more checkboxes as needed -->
-  </div>
-</div>
-  <div  class="col-md-4">
-
-  
-    <div *ngIf=" typeTestChoising === 'LOGARITHMIC_LOAD_MODEL' ">
-    <label>NothingFor:</label>
-    <input  placeholder="NothingFor *" type="text" formControlName="name" class="form-control" >
-  
-    <label>atOnceUsers:</label>
-    <input  placeholder="atOnceUsers *" type="text" formControlName="name" class="form-control">
-    <label>user arrival rate :</label>
-    <input  placeholder="rampUsers *" type="text" formControlName="name" class="form-control">
-    <input  placeholder="during *" type="text" formControlName="name" class="form-control">
-    <label>user arrival rate :</label>
-    <input  placeholder="rampUsers *" type="text" formControlName="name" class="form-control">
-    <input  placeholder="during *" type="text" formControlName="name" class="form-control">
-    <label>user arrival rate :</label>
-    <input  placeholder="rampUsers *" type="text" formControlName="name" class="form-control">
-    <input  placeholder="during *" type="text" formControlName="name" class="form-control">
-    <label>user arrival rate :</label>
-    <input  placeholder="rampUsers *" type="text" formControlName="name" class="form-control">
-    <input  placeholder="during *" type="text" formControlName="name" class="form-control">
-
-  </div>
-
-    <div *ngIf="typeTestChoising === 'EXPONENTIEL_LOAD_MODEL' ">
-     
-  
-      <label>NothingFor:</label>
-    <input  placeholder="NothingFor *" type="text" formControlName="name" class="form-control" >
-    <label>atOnceUsers:</label>
-    <input  placeholder="atOnceUsers *" type="text" formControlName="name" class="form-control">
-    <label>user arrival rate :</label>
-    <input  placeholder="rampUsers *" type="text" formControlName="name" class="form-control">
-    <label>users per second :</label>
-    <input  placeholder="during *" type="text" formControlName="name" class="form-control">
-    <label>user arrival rate :</label>
-    <input  placeholder="rampUsers *" type="text" formControlName="name" class="form-control">
-    <label>users per second :</label>
-    <input  placeholder="during *" type="text" formControlName="name" class="form-control">
-    <label>user arrival rate :</label>
-    <input  placeholder="rampUsers *" type="text" formControlName="name" class="form-control">
-
-    <label>users per second :</label>
-    <input  placeholder="during *" type="text" formControlName="name" class="form-control">
-    <label>user arrival rate :</label>
-    <input  placeholder="rampUsers *" type="text" formControlName="name" class="form-control">
-    <label>users per second :</label>
-    <input  placeholder="during *" type="text" formControlName="name" class="form-control">
-    <label>user arrival rate :</label>
-    <input  placeholder="rampUsers *" type="text" formControlName="name" class="form-control">
-    <label>users per second :</label>
-    <input  placeholder="during *" type="text" formControlName="name" class="form-control">
-    <label>user arrival rate :</label>
-    <input  placeholder="rampUsers *" type="text" formControlName="name" class="form-control">
-    <label>users per second :</label>
-    <input  placeholder="during *" type="text" formControlName="name" class="form-control">
-
-  </div>
+                    </option>
+                  </select>
+                </div>
 
 
-   
-  </div>
-  
-  </div>
-        <div>
-  <button   type="button"  (click)="removeQuantity(i)" class="fas fa-trash-alt  delete-icon">Remove</button>
+              </div>
+            </div>
+            <h1 class="reveal-text">
+              Select Your Type Of test :
+            </h1>
+
+
+            <p-toast position="top-center"></p-toast>
+            <div *ngFor="let nb of radioIndices; let i = index">
+
+           
+            <!--Type SetUp -->
+            <div class="row">
+              <div class="col-md-4">
+                <input type="radio" value="SOAK_LOAD" #typeTest6 formControlName="typeTest"
+                  (change)="setValue($event, scenario)" id="option1" class="input-hidden" />
+                <label for="option1">
+                  <img src="/assets/Back/img/SoakLoad.png" alt="image 1" />
+
+                </label>
+                <p class="image-text">Soak Load Test <a href="javascript:void(0);"
+                    (click)="explication_TypeTest('soakLoadTest')">?</a></p>
+
+              </div>
+              <div class="col-md-4">
+                <input value="STRESS_LOAD_TEST" #typeTest7 formControlName="typeTest"
+                  (change)="setValue($event,scenario)" type="radio" id="option2" class="input-hidden" />
+                <label for="option2">
+                  <img src="/assets/Back/img/StressLoad.png" alt="image 2" />
+                </label>
+                <p class="image-text">Stress Load Test <a href="javascript:void(0);"
+                    (click)="explication_TypeTest('stressLoadTest')">?</a></p>
+              </div>
+              <div class="col-md-4">
+                <input value="CONSTANT_LOAD" #typeTest7 formControlName="typeTest" (change)="setValue($event, scenario)"
+                  type="radio" id="option3" class="input-hidden" />
+                <label for="option3">
+                  <img src="/assets/Back/img/CONSTANT_LOAD_TEST.png" alt="image 3" />
+                </label>
+
+                <p class="image-text">Constant Load Test <a href="javascript:void(0);"
+                    (click)="explication_TypeTest('constantloadTest')">?</a></p>
+              </div>
+
+            </div>
+            </div>
+
+            <!-- -->
+
+            <div *ngFor="let i of typeTestChoising2; let index = index">
+
+            <div *ngIf=" checkWichType(typeTestChoising2,scenario) === 'SOAK_LOAD' ">
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Start with a delay :</label>
+                  <input placeholder="NothingFor *" type="text" formControlName="name" class="form-control">
+                </div>
+              </div>
+              <div class="row">
+                <label>Constant load of __ users per second for __ hour:</label>
+                <div class="col-md-4"> <input placeholder="atOnceUsers *" type="text" formControlName="name"
+                    class="form-control">
+                </div>
+                <div class="col-md-4"> <input placeholder="during *" type="text" formControlName="name"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+              <label>End with a delay :</label>
+              <input placeholder="NothingFor *" type="text" formControlName="name" class="form-control">
+            </div>
+          </div>
+          </div>
+            <div *ngIf=" checkWichType(typeTestChoising2,scenario) === 'STRESS_LOAD_TEST' ">
+              <div class="row">
+               
+                <div class="col-md-4"> 
+                  <label>Constant nbr users per sec:</label>
+                  <input placeholder="constantUsersPerSec *" type="text" formControlName="name"
+                    class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label> during periode in seconds:</label>
+                   <input placeholder="during *" type="text" formControlName="name"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="row">
+               
+                <div class="col-md-4">
+                  <label>stressPeakUsers to Hight Nbr suddenly :</label>
+                  <input placeholder="stressPeakUsers *" type="text" formControlName="name"
+                    class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label>during periode in second :</label>
+                  <input placeholder="during *" type="text" formControlName="name"
+                    class="form-control">
+                </div>
+              </div>
+
+            </div>  
+            <div *ngIf=" checkWichType(typeTestChoising2,scenario) === 'CONSTANT_LOAD' ">
+              <div class="row">
+               
+                <div class="col-md-4"> 
+                  <label>Constant load of Nbr users per sec:</label>
+                  <input placeholder="constantUsersPerSec *" type="text" formControlName="name"
+                    class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label> during periode in seconds:</label>
+                   <input placeholder="during *" type="text" formControlName="name"
+                    class="form-control">
+                </div>
+              </div>
+          
+
+            </div>
+
+
+          </div>
+
+
+          </div>
+          <div>
+            <button type="button" (click)="removeQuantity(i)" class="fas fa-trash-alt  delete-icon">Remove</button>
+          </div>
         </div>
- </div>
 
- <div>
- <button type="button" (click)="addSen()" class="btnAdd">Add </button>
+        <div>
+          <button type="button" (click)="addSen()" class="btnAdd">Add </button>
 
-</div></div>
-<div>
-<button  (click)="onSubmit()" type="submit" class="btn btn-success">Submit</button>
-<h4 style="color: black;"> {{this.SetupFrom.value | json}}</h4>
+        </div>
+      </div>
+      <div>
+        <button (click)="onSubmit()" type="submit" class="btn btn-success">Submit</button>
+        <h4 style="color: black;"> {{this.SetupFrom.value | json}}</h4>
+      </div>
+
+    </div>
+  </form>
 </div>
- 
-      </div>
-      </form>
-      </div>
-      <button class="go-back-button" (click)="goBack()">
-        <i class="fas fa-arrow-left"></i> Go Back
-      </button>
-     
-      
+<button class="go-back-button" (click)="goBack()">
+  <i class="fas fa-arrow-left"></i> Go Back
+</button>

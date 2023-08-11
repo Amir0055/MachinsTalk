@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { application } from 'src/app/entities/application';
 import { ApplicationService } from 'src/app/services/application.service';
