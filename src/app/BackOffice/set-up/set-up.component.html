@@ -33,37 +33,39 @@
         </div>
       </div>
       <div class="note">
-        <p> Enter your Scenario .</p>
+        <p> Enter your Scenario</p>
       </div>
 
 
       <div class="form-group" formArrayName="scenarios">
-        <div class="form-group" *ngFor="let scenario of scenarios().controls; let i=index" [formGroupName]="i">
+        <div class="form-group" *ngFor="let scenario of getScenarios().controls; let scenarioIndex=index"
+             [formGroupName]="scenarioIndex">
 
           <div class="form-content">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <input type="text" placeholder="name Scenario *" id="nameScn" name="nameScn" formControlName="name"
-                    class="form-control">
+                         class="form-control">
                 </div>
-                <div class="form-group" *ngFor="let parameter of ListParamters; let i = index">
-                  <div class="row" >
+                <div class="form-group" *ngFor="let parameter of getSelectedPathParameters(scenarioIndex); let indexParam = index">
+                  <div class="row">
                     <div class="col-md-6">
                       <div class="form-group mb-1">
-                        Keys {{i+1}}:
+                        Keys {{indexParam + 1}}:
                         <input type="text" [value]="parameter.clee" readonly class="form-control">
                       </div>
                     </div>
                     <div class="col-md-6">
-                      Values {{i+1}}:
-                      <input type="text" #valueType (change)="setValueInPlace(i,valueType.value)" class="form-control">
+                      Values {{indexParam + 1}}:
+                      <input type="text" #valueType (change)="setValueInPlace(indexParam,valueType.value)"
+                             class="form-control">
                     </div>
                   </div>
                 </div>
-                
 
-                <!--  
+
+                <!--
           <div class="form-group" >
         <input type="text" placeholder="erreurMsg *" formControlName="erreurMsg"  class="form-control">
       </div>-->
@@ -108,131 +110,136 @@
 
 
             <p-toast position="top-center"></p-toast>
-            <div *ngFor="let nb of radioIndices; let i = index">
+            <div *ngFor="let nb of radioIndices; let ngIndex = index">
 
-           
-            <!--Type SetUp -->
-            <div class="row">
-              <div class="col-md-4">
-                <input type="radio" value="SOAK_LOAD" #typeTest6 formControlName="typeTest"
-                  (change)="setValue($event, scenario)" id="option1" class="input-hidden" />
-                <label for="option1">
-                  <img src="/assets/Back/img/SoakLoad.png" alt="image 1" />
+              <div class="form-group">
+                <!--Type SetUp -->
+                <div class="row">
+                  <div class="col-md-4">
+                    <input type="radio" value="SOAK_LOAD" formControlName="typeTest"
+                           (change)="setValue($event, scenario, scenarioIndex)" id="option1" class="input-hidden"/>
+                    <label for="option1">
+                      <img src="/assets/Back/img/SoakLoad.png" alt="image 1"/>
 
-                </label>
-                <p class="image-text">Soak Load Test <a href="javascript:void(0);"
-                    (click)="explication_TypeTest('soakLoadTest')">?</a></p>
+                    </label>
+                    <p class="image-text">Soak Load Test <a href="javascript:void(0);"
+                                                            (click)="explication_TypeTest('soakLoadTest')">?</a></p>
 
+                  </div>
+                  <div class="col-md-4">
+                    <input value="STRESS_LOAD_TEST" formControlName="typeTest"
+                           (change)="setValue($event,scenario, scenarioIndex)" type="radio" id="option2"
+                           class="input-hidden"/>
+                    <label for="option2">
+                      <img src="/assets/Back/img/StressLoad.png" alt="image 2"/>
+                    </label>
+                    <p class="image-text">Stress Load Test <a href="javascript:void(0);"
+                                                              (click)="explication_TypeTest('stressLoadTest')">?</a></p>
+                  </div>
+                  <div class="col-md-4">
+                    <input value="CONSTANT_LOAD" formControlName="typeTest"
+                           (change)="setValue($event, scenario, scenarioIndex)"
+                           type="radio" id="option3" class="input-hidden"/>
+                    <label for="option3">
+                      <img src="/assets/Back/img/CONSTANT_LOAD_TEST.png" alt="image 3"/>
+                    </label>
+
+                    <p class="image-text">Constant Load Test <a href="javascript:void(0);"
+                                                                (click)="explication_TypeTest('constantloadTest')">?</a>
+                    </p>
+                  </div>
+
+                </div>
               </div>
-              <div class="col-md-4">
-                <input value="STRESS_LOAD_TEST" #typeTest7 formControlName="typeTest"
-                  (change)="setValue($event,scenario)" type="radio" id="option2" class="input-hidden" />
-                <label for="option2">
-                  <img src="/assets/Back/img/StressLoad.png" alt="image 2" />
-                </label>
-                <p class="image-text">Stress Load Test <a href="javascript:void(0);"
-                    (click)="explication_TypeTest('stressLoadTest')">?</a></p>
-              </div>
-              <div class="col-md-4">
-                <input value="CONSTANT_LOAD" #typeTest7 formControlName="typeTest" (change)="setValue($event, scenario)"
-                  type="radio" id="option3" class="input-hidden" />
-                <label for="option3">
-                  <img src="/assets/Back/img/CONSTANT_LOAD_TEST.png" alt="image 3" />
-                </label>
-
-                <p class="image-text">Constant Load Test <a href="javascript:void(0);"
-                    (click)="explication_TypeTest('constantloadTest')">?</a></p>
-              </div>
-
-            </div>
             </div>
 
             <!-- -->
 
             <div *ngFor="let i of typeTestChoising2; let index = index">
 
-            <div *ngIf=" checkWichType(typeTestChoising2,scenario) === 'SOAK_LOAD' ">
-              <div class="row">
-                <div class="col-md-4">
-                  <label>Start with a delay :</label>
-                  <input placeholder="NothingFor *" type="text" formControlName="name" class="form-control">
+              <div *ngIf=" checkWichType(typeTestChoising2,scenario) === 'SOAK_LOAD' ">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Start with a delay :</label>
+                    <input placeholder="NothingFor *" type="text" formControlName="name" class="form-control">
+                  </div>
+                </div>
+                <div class="row">
+                  <label>Constant load of __ users per second for __ hour:</label>
+                  <div class="col-md-4"><input placeholder="atOnceUsers *" type="text" formControlName="name"
+                                               class="form-control">
+                  </div>
+                  <div class="col-md-4"><input placeholder="during *" type="text" formControlName="name"
+                                               class="form-control">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>End with a delay :</label>
+                    <input placeholder="NothingFor *" type="text" formControlName="name" class="form-control">
+                  </div>
                 </div>
               </div>
-              <div class="row">
-                <label>Constant load of __ users per second for __ hour:</label>
-                <div class="col-md-4"> <input placeholder="atOnceUsers *" type="text" formControlName="name"
-                    class="form-control">
+              <div *ngIf=" checkWichType(typeTestChoising2,scenario) === 'STRESS_LOAD_TEST' ">
+                <div class="row">
+
+                  <div class="col-md-4">
+                    <label>Constant nbr users per sec:</label>
+                    <input placeholder="constantUsersPerSec *" type="text" formControlName="name"
+                           class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label> during periode in seconds:</label>
+                    <input placeholder="during *" type="text" formControlName="name"
+                           class="form-control">
+                  </div>
                 </div>
-                <div class="col-md-4"> <input placeholder="during *" type="text" formControlName="name"
-                    class="form-control">
+                <div class="row">
+
+                  <div class="col-md-4">
+                    <label>stressPeakUsers to Hight Nbr suddenly :</label>
+                    <input placeholder="stressPeakUsers *" type="text" formControlName="name"
+                           class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label>during periode in second :</label>
+                    <input placeholder="during *" type="text" formControlName="name"
+                           class="form-control">
+                  </div>
                 </div>
+
               </div>
-              <div class="row">
-                <div class="col-md-4">
-              <label>End with a delay :</label>
-              <input placeholder="NothingFor *" type="text" formControlName="name" class="form-control">
+              <div *ngIf=" checkWichType(typeTestChoising2,scenario) === 'CONSTANT_LOAD' ">
+                <div class="row">
+
+                  <div class="col-md-4">
+                    <label>Constant load of Nbr users per sec:</label>
+                    <input placeholder="constantUsersPerSec *" type="text" formControlName="name"
+                           class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label> during periode in seconds:</label>
+                    <input placeholder="during *" type="text" formControlName="name"
+                           class="form-control">
+                  </div>
+                </div>
+
+
+              </div>
+
+
             </div>
-          </div>
-          </div>
-            <div *ngIf=" checkWichType(typeTestChoising2,scenario) === 'STRESS_LOAD_TEST' ">
-              <div class="row">
-               
-                <div class="col-md-4"> 
-                  <label>Constant nbr users per sec:</label>
-                  <input placeholder="constantUsersPerSec *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-                <div class="col-md-4">
-                  <label> during periode in seconds:</label>
-                   <input placeholder="during *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="row">
-               
-                <div class="col-md-4">
-                  <label>stressPeakUsers to Hight Nbr suddenly :</label>
-                  <input placeholder="stressPeakUsers *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-                <div class="col-md-4">
-                  <label>during periode in second :</label>
-                  <input placeholder="during *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-              </div>
-
-            </div>  
-            <div *ngIf=" checkWichType(typeTestChoising2,scenario) === 'CONSTANT_LOAD' ">
-              <div class="row">
-               
-                <div class="col-md-4"> 
-                  <label>Constant load of Nbr users per sec:</label>
-                  <input placeholder="constantUsersPerSec *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-                <div class="col-md-4">
-                  <label> during periode in seconds:</label>
-                   <input placeholder="during *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-              </div>
-          
-
-            </div>
-
-
-          </div>
 
 
           </div>
           <div>
-            <button type="button" (click)="removeQuantity(i)" class="fas fa-trash-alt  delete-icon">Remove</button>
+            <button type="button" (click)="removeQuantity(scenarioIndex)" class="fas fa-trash-alt  delete-icon">Remove
+            </button>
           </div>
         </div>
 
         <div>
-          <button type="button" (click)="addSen()" class="btnAdd">Add </button>
+          <button type="button" (click)="addSen()" class="btnAdd">Add</button>
 
         </div>
       </div>

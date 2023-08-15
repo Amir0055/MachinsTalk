@@ -18,22 +18,22 @@ export class SetUpComponent implements OnInit {
   FormArray: { [TypeTestChoising: string]: FormGroup } = {
 };
   typeTestChoising!:any;
-  public pathOptions: Path[] = []; 
+  public pathOptions: Path[] = [];
   SetupFrom: FormGroup;
   id!:number;
   idScenario : number=0;
    selectedPath!: any;
    ListParamters : Parameterss[] = [];
-   typeTestChoising2 :any[] = []; 
+   typeTestChoising2 :any[] = [];
    radioIndices: number[] = [1];
- 
-  constructor(private fb:FormBuilder, 
-    private setupService: SetupService, 
+
+  constructor(private fb:FormBuilder,
+    private setupService: SetupService,
     private activatedRouter: ActivatedRoute,
-    private pathService: PathService, 
+    private pathService: PathService,
     private messageService: MessageService,
     private router:Router) {
-   
+
     this.SetupFrom = this.fb.group({
       name: '',
       cle: '',
@@ -46,11 +46,9 @@ export class SetUpComponent implements OnInit {
       this.id = +params['id'];
     });
 
-  console.log(this.typeTestChoising);
   this.pathService.findByApplication_Id(this.id).subscribe(
     (paths: Path[]) => {
       console.log("paths"); // Vérifiez si les données sont récupérées correctement
-      console.log(paths); 
       this.pathOptions = paths;
     },
     error => {
@@ -75,38 +73,39 @@ export class SetUpComponent implements OnInit {
       RadioTest:[''],
     })
   }
-  scenarios() : FormArray {
+  getScenarios() : FormArray {
     return this.SetupFrom.get("scenarios") as FormArray
   }
+
+
   addSen() {
     this.idScenario=this.idScenario+1;
-    this.scenarios().push(this.newSen());
+    this.getScenarios().push(this.newSen());
   }
-   
+
   removeQuantity(i:number) {
-    this.scenarios().removeAt(i);
+    this.getScenarios().removeAt(i);
   }
-   
+
   onSubmit() {
-    console.log(this.SetupFrom.value);
       const setupData: Setup = this.SetupFrom.value;
-      console.log(setupData)
+     // console.log(setupData)
       this.addSetup(setupData);
- 
+
   }
   addSetup(setup: Setup){
-    
-    this.setupService.registerSetup(setup).subscribe((data) => {  
+
+    this.setupService.registerSetup(setup).subscribe((data) => {
     },(error) =>{
       console.error('Failed Add Setup Data ', error);
     });
   }
-  setValue(event : any, scenario: any){
-    console.log("scenario", scenario)
-    this.typeTestChoising2[scenario]=event.target.value;
-    console.log("where i add ☺ :",event.target.value);
-    console.log("this.typeTestChoising2")
-    console.log(this.typeTestChoising2)
+  setValue(event : any, scenario: any, formGroupName: any){
+    //this.typeTestChoising2[scenario]=event.target.value;
+
+    let scenarios:FormArray = this.getScenarios();
+    console.log(scenarios);
+    //console.log(this.typeTestChoising2)
 
    // this.typeTestChoising=value;
   }
@@ -126,35 +125,51 @@ export class SetUpComponent implements OnInit {
 
   selectPath(event: Event) {
     const selectedOptionName = (event.target as HTMLSelectElement)?.value;
-    if (selectedOptionName) 
+    if (selectedOptionName)
       this.selectedPath = this.pathOptions.find(option => option.name === selectedOptionName);
-    this.displayparamters(this.selectedPath);
+    //this.displayParameters(this.selectedPath);
   }
-  displayparamters(path :any){
+  displayParameters(path :any){
     this.ListParamters=path.parameters;
-    console.log(this.ListParamters);
-    
+    //console.log(this.ListParamters);
+
 
   }
+
+  getSelectedPathParameters(scenarioIndex:any){
+    if(scenarioIndex == null) {
+      return
+    }
+    let scenarioArray:FormArray = this.getScenarios()
+    let selectedPath = scenarioArray.get(scenarioIndex.toString())?.get("path")?.value
+    let pathParams: Parameterss[] = []
+    if(selectedPath){
+      let filteredPath = this.pathOptions.find(option => option.name === selectedPath);
+      if (filteredPath)
+      pathParams = filteredPath.parameters
+      console.log(pathParams)
+    }
+    return pathParams
+  }
+
+
   explication_TypeTest(Type:string){
     const messageDetails: { [key: string]: any } = {
       'constantloadTest': { severity: 'info', summary: 'Information', detail: 'test where a consistent number of simulated users generate traffic at a steady rate over a set period.', sticky: true },
       'stressLoadTest': { severity: 'info', summary: 'Information', detail: 'It helps in determining the system’s maximum capacity and uncovering potential performance bottlenecks.', sticky: true },
       'soakLoadTest': { severity: 'info', summary: 'Information', detail: 'This model involves applying a consistent load on the system for an extended period, typically several hours or even days (Endurance testing). ', sticky: true }
     };
-  
+
     const messageDetail = messageDetails[Type];
-  
+
     if (messageDetail) {
       this.messageService.add(messageDetail);
     }
-  
+
     console.log('CLICK ☻☺');
 }
 setValueInPlace(i:number,Value:string){
-  console.log(Value)
   this.ListParamters[i].value = Value;
-  console.log( this.ListParamters)
 }
 
 }
