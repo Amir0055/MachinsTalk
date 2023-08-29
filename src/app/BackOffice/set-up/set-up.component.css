@@ -440,7 +440,240 @@ margin-top: 5px;
   margin-top: 5px;
   color: #666;
 }
+.custom-tooltip {
+  --bs-tooltip-bg: var(--bd-violet-bg);
+  --bs-tooltip-color: var(--bs-white);
+}
 
+.centered-dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0 !important;
+  overflow-y: auto !important;
+  padding: 0 !important;
+  position: fixed;
+  width: 100%;
+  z-index: 10000; /* Ensure the dialog appears above other content */
+}
 
+/* The switch - the box around the slider */
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 1.2em;
+  height: 3.3em;
+}
+
+/* Hide default HTML checkbox */
+.switch .chk {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 5px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: .5em;
+  width: 2.4em;
+  border-radius: 5px;
+  left: -0.6em;
+  top: 0.2em;
+  background-color: white;
+  box-shadow: 0 6px 7px rgba(0,0,0,0.3);
+  transition: .4s;
+}
+
+.slider:before, .slider:after {
+  content: "";
+  display: block;
+}
+
+.slider:after {
+  background: linear-gradient(transparent 50%, rgba(255, 255, 255, 0.15) 0) 0 50% / 50% 100%,
+repeating-linear-gradient(90deg,rgb(255, 255, 255) 0,rgb(255, 255, 255),rgb(255, 255, 255) 20%,rgb(255, 255, 255) 20%,rgb(255, 255, 255) 40%) 0 50% / 50% 100%,
+radial-gradient(circle at 50% 50%,rgb(255, 255, 255) 25%, transparent 26%);
+  background-repeat: no-repeat;
+  border: 0.25em solid transparent;
+  border-left: 0.4em solid #ffffff;
+  border-right: 0 solid transparent;
+  transition: border-left-color 0.1s 0.3s ease-out, transform 0.3s ease-out;
+  transform: translateX(-22.5%) rotate(90deg);
+  transform-origin: 25% 50%;
+  position: relative;
+  top: 0.5em;
+  left: 0.55em;
+  width: 2em;
+  height: 1em;
+  box-sizing: border-box;
+}
+
+.chk:checked + .slider {
+  background-color: limegreen;
+}
+
+.chk:focus + .slider {
+  box-shadow: 0 0 1px limegreen;
+}
+
+.chk:checked + .slider:before {
+  transform: translateY(2.3em);
+}
+
+.chk:checked + .slider:after {
+  transform: rotateZ(90deg) rotateY(180deg) translateY(0.45em) translateX(-1.4em);
+}
+/*! Explain test Css!*/
+.button-expalin {
+  position: relative;
+  list-style: none;
+  border: none;
+  background-color: transparent;
+  border-radius: 50%;
+  cursor: grab;
+  padding-top: 10px;
+}
+
+.button-expalin .svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  transition: all 0.3s;
+}
+
+.button-expalin .svg2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  fill: #f4af03;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.button-expalin:hover .svg {
+  fill: #f4af03;
+}
+
+.button-expalin:hover .svg2 {
+  opacity: 1;
+  fill: #f4af03;
+}
+  /*? Add Scenario item */
+  .button-add {
+    position: relative;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 1px solid  greenyellow;
+    background-color: greenyellow;
+  }
   
+  .button-add, .button__icon, .button__text {
+    transition: all 0.3s;
+  }
   
+  .button-add .button__text {
+    transform: translateX(30px);
+    color: #fff;
+    font-weight: 600;
+  }
+  
+  .button-add .button__icon {
+    position: absolute;
+    transform: translateX(109px);
+    height: 100%;
+    width: 39px;
+    background-color: #34974d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button-add .svg {
+    width: 30px;
+    stroke: #fff;
+  }
+  
+  .button-add:hover {
+    background: #34974d;
+  }
+  
+  .butbutton-addton:hover .button__text {
+    color: transparent;
+  }
+  
+  .button-add:hover .button__icon {
+    width: 148px;
+    transform: translateX(0);
+  }
+  
+  .button:active .button__icon {
+    background-color: #2e8644;
+  }
+  
+  .button:active {
+    border: 1px solid #2e8644;
+  }
+  /*!! play setup button*/
+  .game-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    box-shadow: 2px 2px 10px #007bff;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  
+  .play-icon {
+    width: 24px;
+    height: 24px;
+    fill: #fff;
+    margin-right: 10px;
+  }
+  
+  .game-button:hover {
+    background-color: #2f3640;
+    color: #799bff;
+    box-shadow: 2px 2px 20px #2f3640;
+    transform: translateY(-2px);
+  }
+  /* Space bettwen */
+  .row-buton {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: 13vw; /* Adjust the percentage value as needed */
+    margin-left: 13vw;
+    justify-content: space-between;
+  }
+

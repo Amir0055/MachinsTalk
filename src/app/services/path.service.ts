@@ -19,6 +19,9 @@ export class PathService {
  findByApplication_Id( id:number){
   return this.http.get<any>(this.baseUrl + '/paths/ListPathByApplicationId/'+id);
  }
+ findByApplication_IdWithPagination( id:number,offset:number,pagesize:number){
+  return this.http.get<any>(this.baseUrl + '/paths/ListPathByApplicationIdPageable/'+id+"/"+offset+"/"+pagesize);
+ }
 
   public registerPath(request: Path) {
     return this.http.post<Path>(this.baseUrl + '/paths', request);

@@ -8,6 +8,7 @@ import { UpdateAppComponent } from './BackOffice/update-app/update-app.component
 import { UpdatePathComponent } from './BackOffice/update-path/update-path.component';
 
 import { SetUpComponent } from './BackOffice/set-up/set-up.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [{
   path: 'admin', component: AlltemplatesadminComponent, children: [
@@ -15,6 +16,7 @@ const routes: Routes = [{
     {
       path: 'home', component: ListapplicationComponent
     },
+    { path: "HomePage", component: HomePageComponent },
     {
       path: 'listapp', component: ListapplicationComponent
     }, 

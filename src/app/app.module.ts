@@ -23,8 +23,12 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {  MatDialogModule } from '@angular/material/dialog';
 import { SetUpComponent } from './BackOffice/set-up/set-up.component';
+import { PopupComponent } from './BackOffice/popup/popup.component';
+import { MyPaginatorComponent } from './my-paginator/my-paginator.component';
+import { HomePageComponent } from './home-page/home-page.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,8 +47,12 @@ import { SetUpComponent } from './BackOffice/set-up/set-up.component';
 
     UpdateAppComponent,
 
-    SetUpComponent
+    SetUpComponent,
+     PopupComponent,
+     MyPaginatorComponent,
+     HomePageComponent,
 
+   
 
   ],
   imports: [
@@ -60,6 +68,7 @@ import { SetUpComponent } from './BackOffice/set-up/set-up.component';
     ConfirmDialogModule,
     ToastModule,
     BrowserAnimationsModule,
+    MatDialogModule,
     
 
   ],

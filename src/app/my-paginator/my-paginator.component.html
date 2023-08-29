@@ -1,0 +1,34 @@
+  <nav aria-label="Page navigation example" class="m-3 top-right-nav">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" (click)="previousOffset()"
+          [ngClass]="{ disabled: currentPageIndex === 0 }">Previous</a></li>
+      <div *ngFor="let page of pages; let currentIndex = index">
+        <a [class.active]="currentIndex === currentPageIndex" (click)="setCurrentPage(currentIndex)"
+          [ngClass]="{ 'page-link': true, 'active': currentIndex === currentPageIndex }" class="page-link
+             {{ currentIndex === currentPageIndex ? 'active' : '' }}">
+          {{ pages[currentIndex] }}
+        </a>
+      </div>
+  
+   
+      <li class="page-item">
+        <a class="page-link" (click)="nextOffset()"
+          [ngClass]="{ 'disabled': currentPageIndex === pages.length - 1 }">
+          Next
+        </a>
+      </li>
+      <br>
+      <br>
+      <div class="position-relative rounded">
+        <select id="mySelect" [(ngModel)]="selectedItem" (ngModelChange)="onItemsPerPageChange()"
+          class="text-center form-control">
+          <option>2</option>
+          <option>5</option>
+          <option>10</option>
+        </select>
+        <div class="position-absolute top-0 end-0 d-flex align-items-center px-2 text-gray-700">
+
+        </div>
+      </div>
+    </ul>
+  </nav>  

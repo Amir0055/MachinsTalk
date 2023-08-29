@@ -21,6 +21,7 @@ ngOnInit(): void {
 this.id=+params['idApp'];
 this._service.idApp=this.id;
 this.getAppData();
+this.reloadPathsList(this.currentPageIndex, this.pageSize, true);
  })
  
 }
@@ -29,8 +30,9 @@ private getAppData(): void {
   this._service.findById(this.id).subscribe(
     (data) => {
       this.app = data;
+      console.log("App :");
       console.log(this.app);
-      this.listPaths();
+     // this.listPaths();
     },
     (error) => {
       console.error('Error while fetching application data:', error);
@@ -63,9 +65,65 @@ goBack(): void {
   this.route.navigate(['admin/listapp']);
 }
 goBackTest(): void {
-    
-  
-
   this.route.navigate(['admin/Setup/'+this.id]);
 }
+//PAgination
+pageSize: number = 1;
+currentPageIndex = 0;
+pages: any;
+total_pages!: number;
+selectedItem: any;
+
+
+
+
+generateNumberList(num: number): number[] {
+  const numberList: number[] = [];
+  for (let i = 1; i <= num; i++) {
+    numberList.push(i);
+  }
+  return numberList;
+}
+
+
+
+onSelectedItemChange(newSelectedItem: any) {
+  console.log('im in onSelectedItemChange()');
+
+  this.pageSize = newSelectedItem;
+  this.reloadPathsList(this.currentPageIndex, this.pageSize, true);
+  console.log('pagesize' + this.pageSize);
+}
+
+setCurrentPage(index: number): void {
+  this.currentPageIndex = index;
+  this.reloadPathsList(this.currentPageIndex, this.pageSize, false);
+  console.log('pagesize' + this.pageSize);
+}
+// reload the list of devices
+reloadPathsList(offset: number, pageSize: number, editPages: boolean) {
+  if (!editPages) {
+    console.log('im in reloadPathsList()');
+    this.srv
+      .findByApplication_IdWithPagination(this.id,offset, pageSize)
+      .subscribe((res: any) => {
+        console.log(res);
+        console;
+        this.app.paths = res.content;
+      });
+  } else {
+    console.log('im in reloadPathsList()');
+
+    this.srv
+      .findByApplication_IdWithPagination(this.id,this.currentPageIndex, this.pageSize)
+      .subscribe((res: any) => {
+        console.log(res);
+        this.app.paths = res.content;
+        this.total_pages = res.totalPages;
+        this.pages = this.generateNumberList(this.total_pages);
+      });
+  }
+}
+
+
 }

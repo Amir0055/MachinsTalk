@@ -6,9 +6,9 @@ import { Parameterss } from 'src/app/entities/Parameterss';
 import { Path } from 'src/app/entities/Path';
 import { ParametersService } from 'src/app/services/parameters.service';
 import { PathService } from 'src/app/services/path.service';
-import { Location } from '@angular/common';
+
 import { application } from 'src/app/entities/application';
-import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { RequestType } from 'src/app/entities/RequestType';
 @Component({
   selector: 'app-update-path',
@@ -37,12 +37,8 @@ export class UpdatePathComponent implements OnInit {
     this.router.params.subscribe((params) => {
       this.idPath = +params['id'];
       this.idApp = +params['idApp'];
-     
         this.path.requestType= RequestType.get;
         this.param.paramType = ParamType.PATH_VARIABLE;
-      
-  
-     
       if (!isNaN(this.idPath))
       this.retivePathData();  
     });
