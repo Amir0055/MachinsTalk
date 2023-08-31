@@ -8,6 +8,7 @@ import { SetupService } from 'src/app/services/setup.service';
 import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 import { Parameterss } from 'src/app/entities/Parameterss';
 import { RequestType } from 'src/app/entities/RequestType';
+import { application } from 'src/app/entities/application';
 
 @Component({
   selector: 'app-set-up',
@@ -16,14 +17,16 @@ import { RequestType } from 'src/app/entities/RequestType';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SetUpComponent implements OnInit {
-  FormArray: { [TypeTestChoising: string]: FormGroup } = {
-};
+
   typeTestChoising!:any;
    pathSelectOptions: Path[] = [];
+    ValuesSaisie: number[] = [];
+    ParamterArray!:any;
   SetupFrom: FormGroup;
   idApp!:number;
   listParameters_A_Remplire : Parameterss[] = [];
   setup: Setup = new Setup();
+  formDataJson!: any;
 
  
   constructor(private fb:FormBuilder, 
@@ -36,6 +39,8 @@ export class SetUpComponent implements OnInit {
       name: '',
       cle: '',
       scenarios: this.fb.array([]) ,
+      valueSaisie: this.fb.array([]) ,
+      tokenValue:'',
     });
   }
   ngOnInit(): void {
@@ -58,21 +63,15 @@ export class SetUpComponent implements OnInit {
     return this.fb.group({
       name: '',
       typeTest: '',
-    //  scenario: '',
-   //   erreurMsg: '',
-   //   success: true,
-   //   pauseTime:'',
-     // eapsedTime:'',
-     // duration:'',
-     // tryMax:'',
         path: this.fb.group({
         id: '',
         name: '',
         path: '',
         requestType: RequestType.get, 
+        application:application,
         parameters: this.fb.array([]),
       }),
- 
+      
     })
   }
 
@@ -89,13 +88,13 @@ export class SetUpComponent implements OnInit {
   }
    
   onSubmit() {
-  
-      const setupData: Setup = this.SetupFrom.value;
-    console.log(this.getPathParameters(0)); 
-   //   this.addSetup(setupData);
+      this.prepareObjectToSend();
+      this.saveSetupData(this.formDataJson);
   }
-  addSetup(setup: Setup){
+  saveSetupData(setup: Setup){
     this.setupService.registerSetup(setup).subscribe((data) => { 
+      console.log(data);
+      
     },(error) =>{
       console.error('Failed Add Setup Data ', error);
     });
@@ -106,7 +105,7 @@ export class SetUpComponent implements OnInit {
       return "CONSTANT_LOAD";
     if(scenario.controls.typeTest.value == "STRESS_LOAD_TEST")
       return "STRESS_LOAD_TEST";
-    if(scenario.controls.typeTest.value == "SOAK_LOAD")
+    if(scenario.controls.typeTest.value == "SOAK_LOAD_TEST")
       return "SOAK_LOAD";
       if(scenario.controls.typeTest.value == "Step_Load_Model")
       return "STEP_LOAD_TEST";
@@ -114,6 +113,12 @@ export class SetUpComponent implements OnInit {
       return "BURST_LOAD";
       if(scenario.controls.typeTest.value == "Exponential_Load_Test")
       return "Exponential_Load_Test";
+      if(scenario.controls.typeTest.value == "SPIKE_LOAD_TEST")
+      return "SPIKE_LOAD";
+      if(scenario.controls.typeTest.value == "CAPACITY_TEST")
+      return "CAPACITY_TEST";
+      if(scenario.controls.typeTest.value == "RAMP_LOAD_TEST")
+      return "RAMP_LOAD_TEST";
   return ;
   }
   goBack(): void {
@@ -128,6 +133,9 @@ export class SetUpComponent implements OnInit {
       'ExponentialLoadTest': { severity: 'info', summary: 'Information', detail: 'In this model, the rate of growth continuously accelerates (a compounding growth),This type of load model is used to simulate scenarios where the load on the system keeps on growing', sticky: true },
       'BurstTest': { severity: 'info', summary: 'Information', detail: 'It simulates bursts of user activity followed by normal load periods and there can be multiple bursts in a session,Test the ability to handle varying loads over time (rapid increases and idle periods)', sticky: true },
       'StepLoadModel': { severity: 'info', summary: 'Information', detail: 'Step Load is gradually increased by adding virtual users or requests in predefined steps ', sticky: true },
+      'SpikeLoadModel': { severity: 'info', summary: 'Information', detail: 'En general for exemple : where they get a sudden spike with a large group of users accessing during the first few hours To WebSite', sticky: true },
+      'CapacityLoadModel': { severity: 'info', summary: 'Information', detail: 'Learn how your application scales and monitor when your performances start to decrease and how.', sticky: true },
+      'RampLoadModel': { severity: 'info', summary: 'Information', detail: 'Learn how your application scales and monitor when your performances start to decrease and how.', sticky: true },
     };
   
     const messageDetail = messageDetails[Type];
@@ -138,21 +146,18 @@ export class SetUpComponent implements OnInit {
   
     console.log('CLICK ☻☺');
 }
-storageKeyValue(Senario:any,i:number,Value:string){
-  this.listParameters_A_Remplire[i].value = Value;
-
-}
-
 
   getListparamter(Senario:any){
-    console.log(Senario);
-    
    let selectedPath_X2 = this.pathSelectOptions.find(option => option.name === Senario.value.path.name);
    let listExisteParamters=Senario.value.path.parameters;
    const parameters = selectedPath_X2?.parameters || [];
      const pathFormGroup = Senario.get('path') as FormGroup;
      const idControl = pathFormGroup.get('id');
+     const pathControl = pathFormGroup.get('path');
+     const appControl = pathFormGroup.get('application');
      idControl?.setValue(selectedPath_X2?.id);
+     pathControl?.setValue(selectedPath_X2?.path);
+     appControl?.setValue(selectedPath_X2?.application);
  /* parameters.forEach((value) => {
     const found = listExisteParamters.find((obj :Parameterss) => {
       return obj.clee === value.clee;
@@ -197,13 +202,53 @@ storageKeyValue(Senario:any,i:number,Value:string){
   getScenarios() : FormArray {
     return this.SetupFrom.get("scenarios") as FormArray
   }
+  getValueSaisie() : FormArray {
+    return this.SetupFrom.get("valueSaisie") as FormArray
+  }
   getPathParameters(scenarioIndex: number): FormArray {
     const pathControl = this.getPathControl(scenarioIndex);
     return pathControl.get('parameters') as FormArray;
   }
   setParamterValue(){
     console.log("Take Chose ☺");
-    
   }
+  handlingInputsTestType(event: any, index: number): void {
+    this.ValuesSaisie[index] = event.value;
+    console.log(this.ValuesSaisie);
+  }
+  storageKeyValue(ListParamter:any,event: any, index: number): void {
+    console.log("ListParamter");
+    ListParamter[index].value=event.value;
+    this.ParamterArray=ListParamter;
+    console.log(ListParamter);
+  }
+  prepareObjectToSend(){
+    this.formDataJson = this.SetupFrom.getRawValue();
+    this.formDataJson.valueSaisie=this.ValuesSaisie;
+    this.formDataJson.scenarios ;
+
+    console.log(this.formDataJson); 
+  }
+
+
+
+
+
+  
+  PopUpModel() {
+
+    
+    const modelDiv = document.getElementById('myModal');
+    if(modelDiv!= null) {
+      modelDiv.style.display = 'block';
+    } 
+  }
+
+  CloseModel() {
+    const modelDiv = document.getElementById('myModal');
+    if(modelDiv!= null) {
+      modelDiv.style.display = 'none';
+    } }
+
 }
 

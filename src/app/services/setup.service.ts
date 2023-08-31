@@ -11,6 +11,8 @@ export class SetupService {
   constructor(private http: HttpClient) { }
 
   public registerSetup(request: Setup) {
-    return this.http.post<Setup>(this.baseUrl + '/setup', request);
+    return this.http.post<any>(this.baseUrl + '/setup', request);
   }
+  
+  
 }

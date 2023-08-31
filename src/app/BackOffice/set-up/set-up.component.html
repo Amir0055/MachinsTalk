@@ -4,7 +4,7 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container ">
-  <form form [formGroup]="SetupFrom" (ngSubmit)="onSubmit()">
+  <form form [formGroup]="SetupFrom" >
     <div class="form">
       <div class="note">
         <p> This is a Setup Register .</p>
@@ -15,6 +15,7 @@
           <!-- Col 1 -->
           <div class="col-md-6">
             <h3 style="color: rgba(64, 64, 255, 0.607);"> Setup :</h3>
+          
             <div class="form-group">
               <input type="text" placeholder="name *" id="name" name="name" formControlName="name" class="form-control">
             </div>
@@ -28,9 +29,28 @@
             <div class="form-group">
               <input type="text" id="name" name="name" formControlName="cle" class="form-control">
             </div>
-
+          
           </div>
         </div>
+    
+          <button class="btnToken" (click)="PopUpModel()">Add Token</button>
+      
+       <!-- POP UP MODEL -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Token</h4>
+        <button type="button" class="btn-close" (click)="CloseModel()" data-bs-dismiss="modal"></button>
+      </div>
+      <input type="text" placeholder="Token *"  formControlName="tokenValue" class="form-control">
+      <div class="modal-footer">
+        <button type="button" class="btnpopup" (click)="CloseModel()" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btnpopupSave" (click)="CloseModel()" data-bs-dismiss="modal">Save Token</button>
+      </div>
+    </div>
+  </div>
+</div>
       </div>
       <div class="note">
         <p> Enter your Scenario .</p>
@@ -57,7 +77,7 @@
                     </div>
                     <div class="col-md-6">
                       Values {{j+1}}:
-                      <input type="text" #valueType  (onchange)="SetValueParamter(scenario)" class="form-control">
+                      <input type="text" #valueType  (change)="storageKeyValue(getListparamter(scenario),$event.target, j)" class="form-control">
                     </div>
                   </div>
                 </div>
@@ -94,7 +114,7 @@
             <div class="row">
               <div class="col-md-4">
                 
-                <input type="radio" value="SOAK_LOAD" formControlName="typeTest"   />
+                <input type="radio" value="SOAK_LOAD_TEST" formControlName="typeTest"   />
                 <label for="option1">
                   <img src="/assets/Back/img/SoakLoad.png" alt="image 1" />
 
@@ -175,6 +195,57 @@
               </div>
 
             </div>
+            <div class="row">
+              <div class="col-md-4">
+                
+                <input type="radio" value="SPIKE_LOAD_TEST" formControlName="typeTest"/>
+                <label for="option1">
+                  <img src="/assets/Back/img/SpikeLoad.png" alt="image 1" />
+
+                </label>
+                <p class="image-text">Spike Load Test <button class="button-expalin" (click)="explication_TypeTest('SpikeLoadModel')">
+                  <svg width="10" height="10" xmlns="http://www.w3.org/2000/svg" height="8em" viewBox="0 0 384 512" class="svg2"><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2l0 0c5.2-7.1 10.4-14.2 15.4-21.4c19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3c5 7.2 10.2 14.3 15.4 21.4l0 0c19.8 27.1 39.7 54.4 49.2 86.2H272zM192 512c44.2 0 80-35.8 80-80V416H112v16c0 44.2 35.8 80 80 80zM112 176c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112c8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"></path></svg>
+                  <svg width="10" height="10" xmlns="http://www.w3.org/2000/svg" height="8em" viewBox="0 0 384 512" class="svg"><path d="M297.2 248.9C311.6 228.3 320 203.2 320 176c0-70.7-57.3-128-128-128S64 105.3 64 176c0 27.2 8.4 52.3 22.8 72.9c3.7 5.3 8.1 11.3 12.8 17.7l0 0c12.9 17.7 28.3 38.9 39.8 59.8c10.4 19 15.7 38.8 18.3 57.5H109c-2.2-12-5.9-23.7-11.8-34.5c-9.9-18-22.2-34.9-34.5-51.8l0 0 0 0c-5.2-7.1-10.4-14.2-15.4-21.4C27.6 247.9 16 213.3 16 176C16 78.8 94.8 0 192 0s176 78.8 176 176c0 37.3-11.6 71.9-31.4 100.3c-5 7.2-10.2 14.3-15.4 21.4l0 0 0 0c-12.3 16.8-24.6 33.7-34.5 51.8c-5.9 10.8-9.6 22.5-11.8 34.5H226.4c2.6-18.7 7.9-38.6 18.3-57.5c11.5-20.9 26.9-42.1 39.8-59.8l0 0 0 0 0 0c4.7-6.4 9-12.4 12.7-17.7zM192 128c-26.5 0-48 21.5-48 48c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-44.2 35.8-80 80-80c8.8 0 16 7.2 16 16s-7.2 16-16 16zm0 384c-44.2 0-80-35.8-80-80V416H272v16c0 44.2-35.8 80-80 80z"></path></svg>
+                  
+                </button></p>
+
+              </div>
+              <div class="col-md-4">
+                
+                <input type="radio" value="CAPACITY_TEST" formControlName="typeTest"/>
+                <label for="option1">
+                  <img src="/assets/Back/img/CapacityLoad.png" alt="image 1" />
+
+                </label>
+                <p class="image-text">Capacity Load Test <button class="button-expalin" (click)="explication_TypeTest('CapacityLoadModel')">
+                  <svg width="10" height="10" xmlns="http://www.w3.org/2000/svg" height="8em" viewBox="0 0 384 512" class="svg2"><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2l0 0c5.2-7.1 10.4-14.2 15.4-21.4c19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3c5 7.2 10.2 14.3 15.4 21.4l0 0c19.8 27.1 39.7 54.4 49.2 86.2H272zM192 512c44.2 0 80-35.8 80-80V416H112v16c0 44.2 35.8 80 80 80zM112 176c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112c8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"></path></svg>
+                  <svg width="10" height="10" xmlns="http://www.w3.org/2000/svg" height="8em" viewBox="0 0 384 512" class="svg"><path d="M297.2 248.9C311.6 228.3 320 203.2 320 176c0-70.7-57.3-128-128-128S64 105.3 64 176c0 27.2 8.4 52.3 22.8 72.9c3.7 5.3 8.1 11.3 12.8 17.7l0 0c12.9 17.7 28.3 38.9 39.8 59.8c10.4 19 15.7 38.8 18.3 57.5H109c-2.2-12-5.9-23.7-11.8-34.5c-9.9-18-22.2-34.9-34.5-51.8l0 0 0 0c-5.2-7.1-10.4-14.2-15.4-21.4C27.6 247.9 16 213.3 16 176C16 78.8 94.8 0 192 0s176 78.8 176 176c0 37.3-11.6 71.9-31.4 100.3c-5 7.2-10.2 14.3-15.4 21.4l0 0 0 0c-12.3 16.8-24.6 33.7-34.5 51.8c-5.9 10.8-9.6 22.5-11.8 34.5H226.4c2.6-18.7 7.9-38.6 18.3-57.5c11.5-20.9 26.9-42.1 39.8-59.8l0 0 0 0 0 0c4.7-6.4 9-12.4 12.7-17.7zM192 128c-26.5 0-48 21.5-48 48c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-44.2 35.8-80 80-80c8.8 0 16 7.2 16 16s-7.2 16-16 16zm0 384c-44.2 0-80-35.8-80-80V416H272v16c0 44.2-35.8 80-80 80z"></path></svg>
+                  
+                </button></p>
+
+              </div>
+              <div class="col-md-4">
+                
+                <input type="radio" value="RAMP_LOAD_TEST" formControlName="typeTest"/>
+                <label for="option1">
+                  <img src="/assets/Back/img/RampLoad.png" alt="image 1" />
+
+                </label>
+                <p class="image-text">Ramp Load Test <button class="button-expalin" (click)="explication_TypeTest('RampLoadModel')">
+                  <svg width="10" height="10" xmlns="http://www.w3.org/2000/svg" height="8em" viewBox="0 0 384 512" class="svg2"><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2l0 0c5.2-7.1 10.4-14.2 15.4-21.4c19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3c5 7.2 10.2 14.3 15.4 21.4l0 0c19.8 27.1 39.7 54.4 49.2 86.2H272zM192 512c44.2 0 80-35.8 80-80V416H112v16c0 44.2 35.8 80 80 80zM112 176c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112c8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"></path></svg>
+                  <svg width="10" height="10" xmlns="http://www.w3.org/2000/svg" height="8em" viewBox="0 0 384 512" class="svg"><path d="M297.2 248.9C311.6 228.3 320 203.2 320 176c0-70.7-57.3-128-128-128S64 105.3 64 176c0 27.2 8.4 52.3 22.8 72.9c3.7 5.3 8.1 11.3 12.8 17.7l0 0c12.9 17.7 28.3 38.9 39.8 59.8c10.4 19 15.7 38.8 18.3 57.5H109c-2.2-12-5.9-23.7-11.8-34.5c-9.9-18-22.2-34.9-34.5-51.8l0 0 0 0c-5.2-7.1-10.4-14.2-15.4-21.4C27.6 247.9 16 213.3 16 176C16 78.8 94.8 0 192 0s176 78.8 176 176c0 37.3-11.6 71.9-31.4 100.3c-5 7.2-10.2 14.3-15.4 21.4l0 0 0 0c-12.3 16.8-24.6 33.7-34.5 51.8c-5.9 10.8-9.6 22.5-11.8 34.5H226.4c2.6-18.7 7.9-38.6 18.3-57.5c11.5-20.9 26.9-42.1 39.8-59.8l0 0 0 0 0 0c4.7-6.4 9-12.4 12.7-17.7zM192 128c-26.5 0-48 21.5-48 48c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-44.2 35.8-80 80-80c8.8 0 16 7.2 16 16s-7.2 16-16 16zm0 384c-44.2 0-80-35.8-80-80V416H272v16c0 44.2-35.8 80-80 80z"></path></svg>
+                  
+                </button></p>
+
+              </div>
+
+            </div>
+        
+       
+         
+      
+
+          
             </fieldset>
        
 
@@ -183,52 +254,33 @@
            
 
             <div *ngIf=" checkWichType(scenario) === 'SOAK_LOAD' ">
-              <div class="row">
-                <div class="col-md-4">
-                  <label>Start with a delay :</label>
-                  <input placeholder="NothingFor *" type="text" formControlName="name" class="form-control">
-                </div>
-              </div>
-              <div class="row">
-                <label>Constant load of __ users per second for __ hour:</label>
-                <div class="col-md-4"> <input placeholder="atOnceUsers *" type="text" formControlName="name"
+            
+            <div class="row">
+            <div class="col-md-4">   
+               <label>Constant load of Nbr users:</label>
+                 <input placeholder="constantConcurrentUsers *" type="number"  (change)="handlingInputsTestType($event.target, 0)"
                     class="form-control">
                 </div>
-                <div class="col-md-4"> <input placeholder="during *" type="text" formControlName="name"
-                    class="form-control">
+                 <div class="col-md-4">      <label> For __ Periode:</label>
+         
+                   <input placeholder="during *" type="number"  (change)="handlingInputsTestType($event.target, 1)"
+                   class="form-control">
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-4">
-              <label>End with a delay :</label>
-              <input placeholder="NothingFor *" type="text" formControlName="name" class="form-control">
-            </div>
-          </div>
+      
           </div>
             <div *ngIf=" checkWichType(scenario) === 'STRESS_LOAD_TEST' ">
-              <div class="row">
-               
-                <div class="col-md-4"> 
-                  <label>Constant nbr users per sec:</label>
-                  <input placeholder="constantUsersPerSec *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-                <div class="col-md-4">
-                  <label> during periode in seconds:</label>
-                   <input placeholder="during *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-              </div>
+        
               <div class="row">
                
                 <div class="col-md-4">
                   <label>stressPeakUsers to Hight Nbr suddenly :</label>
-                  <input placeholder="stressPeakUsers *" type="text" formControlName="name"
+                  <input placeholder="stressPeakUsers *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 0)"
                     class="form-control">
                 </div>
                 <div class="col-md-4">
                   <label>during periode in second :</label>
-                  <input placeholder="during *" type="text" formControlName="name"
+                  <input placeholder="during *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 1)"
                     class="form-control">
                 </div>
               </div>
@@ -239,12 +291,12 @@
                
                 <div class="col-md-4"> 
                   <label>Constant load of Nbr users per sec:</label>
-                  <input placeholder="constantUsersPerSec *" type="text" formControlName="name"
+                  <input placeholder="constantUsersPerSec *" type="number"  formControlName="name"(change)="handlingInputsTestType($event.target, 0)"
                     class="form-control">
                 </div>
                 <div class="col-md-4">
                   <label> during periode in seconds:</label>
-                   <input placeholder="during *" type="text" formControlName="name"
+                   <input placeholder="during *" type="number"  formControlName="name"(change)="handlingInputsTestType($event.target, 1)"
                     class="form-control">
                 </div>
               </div>
@@ -254,7 +306,7 @@
                
                 <div class="col-md-4"> 
                   <label>Start with a delay :</label>
-                  <input placeholder="nothingFor *" type="text" formControlName="name"
+                  <input placeholder="nothingFor *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 0)"
                     class="form-control">
                 </div>
             
@@ -262,133 +314,75 @@
               <div class="row">
                 <div class="col-md-4">
                   <label> Ramp up Nbr users :</label>
-                   <input placeholder="rampUsers *" type="text" formControlName="name"
+                   <input placeholder="rampUsers *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 1)"
                     class="form-control">
                 </div>
              
                 <div class="col-md-4">
                   <label>during periode in second :</label>
-                  <input placeholder="during *" type="text" formControlName="name"
+                  <input placeholder="during *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 2)"
                     class="form-control">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <label> Delay between steps :</label>
-                   <input placeholder="nothingFor *" type="text" formControlName="name"
+                   <input placeholder="nothingFor *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 3)"
                     class="form-control">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <label> Maintain a constant load of Nbr users :</label>
-                   <input placeholder="constantUserPerSec *" type="text" formControlName="name"
+                   <input placeholder="constantUserPerSec *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 4)"
                     class="form-control">
                 </div>
              
                 <div class="col-md-4">
                   <label>during periode in second :</label>
-                  <input placeholder="during *" type="text" formControlName="name"
+                  <input placeholder="during *" type="number"  formControlName="name"(change)="handlingInputsTestType($event.target, 5)"
                     class="form-control">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <label> Delay between steps :</label>
-                   <input placeholder="nothingFor *" type="text" formControlName="name"
+                   <input placeholder="nothingFor *" type="number"  formControlName="name"(change)="handlingInputsTestType($event.target, 6)"
                     class="form-control">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <label> Ramp up Your Nbr of User from :</label>
-                   <input placeholder="rampUserPerSec *" type="text" formControlName="name"
+                   <input placeholder="rampUserPerSec *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 7)"
                     class="form-control">
                 </div>
              
                 <div class="col-md-4">
                   <label>To :</label>
-                  <input placeholder="to *" type="text" formControlName="name"
+                  <input placeholder="to *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 8)"
                     class="form-control">
                 </div>
                 <div class="col-md-4">
                   <label>periode :</label>
-                  <input placeholder="during *" type="text" formControlName="name"
+                  <input placeholder="during *" type="number"  formControlName="name"(change)="handlingInputsTestType($event.target, 9)"
                     class="form-control">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <label> Delay between steps :</label>
-                   <input placeholder="nothingFor *" type="text" formControlName="name"
+                   <input placeholder="nothingFor *" type="number"  formControlName="name"(change)="handlingInputsTestType($event.target, 10)"
                     class="form-control">
                 </div>
               </div>
             </div> 
             <div *ngIf=" checkWichType(scenario) === 'BURST_LOAD' ">
-              <div class="row">
-               
-                <div class="col-md-4"> 
-                  <label> Start with a delay:</label>
-                  <input placeholder="nothingFor *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
            
-              </div>
               <div class="row">
                 <div class="col-md-4"> 
-                  <label> Initial burst of Nbr users:</label>
-                  <input placeholder="atOnceUsers *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-           
-              </div>
-              <div class="row">
-                <div class="col-md-4"> 
-                  <label> Constant load of Nbr users:</label>
-                  <input placeholder="constantUsersPerSec *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-                <div class="col-md-4"> 
-                  <label> during periode in second :</label>
-                  <input placeholder="during *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4"> 
-                  <label> Ramp up Nbr of user :</label>
-                  <input placeholder="rampUsersPerSec *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-                <div class="col-md-4"> 
-                  <label> To :</label>
-                  <input placeholder="to *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-                <div class="col-md-4"> 
-                  <label> Periode in :</label>
-                  <input placeholder="during *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4"> 
-                  <label> Constant load of Nbr users:</label>
-                  <input placeholder="constantUsersPerSec *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-                <div class="col-md-4"> 
-                  <label> during periode in second :</label>
-                  <input placeholder="during *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="row">
-               
-                <div class="col-md-4"> 
-                  <label> End with a delay:</label>
-                  <input placeholder="nothingFor *" type="text" formControlName="name"
+                  <label> Initial burst of Nbr users :</label>
+                  <input placeholder="atOnceUsers *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 0)"
                     class="form-control">
                 </div>
            
@@ -399,25 +393,17 @@
                
                 <div class="col-md-4"> 
                   <label> Start with a delay:</label>
-                  <input placeholder="nothingFor *" type="text" formControlName="name"
+                  <input placeholder="nothingFor *" type="number" formControlName="name" (change)="handlingInputsTestType($event.target, 0)"
                     class="form-control">
                 </div>
            
               </div>
+         
               <div class="row">
                
                 <div class="col-md-4"> 
                   <label>Initial add Nbr Of users:</label>
-                  <input placeholder="atOnceUsers *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-           
-              </div>
-              <div class="row">
-               
-                <div class="col-md-4"> 
-                  <label>Initial add Nbr Of users:</label>
-                  <input placeholder="atOnceUsers *" type="text" formControlName="name"
+                  <input placeholder="atOnceUsers *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 1)"
                     class="form-control">
                 </div>
            
@@ -425,83 +411,102 @@
               <div class="row">
                 <div class="col-md-4">
                   <label> Ramp up Nbr users :</label>
-                   <input placeholder="rampUsers *" type="text" formControlName="name"
+                   <input placeholder="rampUsers *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 2)"
                     class="form-control">
                 </div>
              
                 <div class="col-md-4">
                   <label> Over _ periode in second :</label>
-                  <input placeholder="during *" type="text" formControlName="name"
+                  <input placeholder="during *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 3)"
                     class="form-control">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <label> Ramp up Nbr users :</label>
-                   <input placeholder="rampUsers *" type="text" formControlName="name"
+                   <input placeholder="rampUsers *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 4)"
                     class="form-control">
                 </div>
              
                 <div class="col-md-4">
                   <label> Over _ during periode in second :</label>
-                  <input placeholder="during *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <label> Ramp up Nbr users :</label>
-                   <input placeholder="rampUsers *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-             
-                <div class="col-md-4">
-                  <label> Over _ during periode in second :</label>
-                  <input placeholder="during *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <label> Ramp up Nbr users :</label>
-                   <input placeholder="rampUsers *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-             
-                <div class="col-md-4">
-                  <label> Over _ during periode in second :</label>
-                  <input placeholder="during *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <label> Ramp up Nbr users :</label>
-                   <input placeholder="rampUsers *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-             
-                <div class="col-md-4">
-                  <label> Over _ during periode in second :</label>
-                  <input placeholder="during *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <label> Ramp up Nbr users :</label>
-                   <input placeholder="rampUsers *" type="text" formControlName="name"
-                    class="form-control">
-                </div>
-             
-                <div class="col-md-4">
-                  <label> Over _ during periode in second :</label>
-                  <input placeholder="during *" type="text" formControlName="name"
+                  <input placeholder="during *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 5)"
                     class="form-control">
                 </div>
               </div>
             </div>
-
+            <div *ngIf=" checkWichType(scenario) === 'SPIKE_LOAD' ">
+           
+              <div class="row">
+               
+                <div class="col-md-4"> 
+                  <label>Constant Nbr users per sec:</label>
+                  <input placeholder="constantUsersPerSec *" type="number" (change)="handlingInputsTestType($event.target, 0)"
+                    class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label> during periode in seconds:</label>
+                   <input placeholder="during *" type="number" (change)="handlingInputsTestType($event.target, 1)"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="row">
+               
+                <div class="col-md-4"> 
+                  <label>stress Peak Nbr Users suddenly:</label>
+                  <input placeholder="constantUsersPerSec *" type="number" (change)="handlingInputsTestType($event.target, 2)"
+                    class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label> during periode in seconds:</label>
+                   <input placeholder="during *" type="number"  (change)="handlingInputsTestType($event.target, 3)"
+                    class="form-control">
+                </div>
+              </div>
+            </div>
+            <div *ngIf=" checkWichType(scenario) === 'CAPACITY_TEST' ">
+           
+              <div class="row">
+                <div class="col-md-4">
+                  <label> Ramp up Your Nbr of User from :</label>
+                   <input placeholder="rampConcurrentUsers *" type="number" (change)="handlingInputsTestType($event.target, 0)"
+                    class="form-control">
+                </div>
+             
+                <div class="col-md-4">
+                  <label>To :</label>
+                  <input placeholder="to *" type="number" (change)="handlingInputsTestType($event.target, 1)"
+                    class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label>periode :</label>
+                  <input placeholder="during *" type="number" (change)="handlingInputsTestType($event.target, 2)"
+                    class="form-control">
+                </div>
+              </div>
+            </div>
+            <div *ngIf=" checkWichType(scenario) === 'RAMP_LOAD_TEST' ">
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Ramp up Your Nbr of User from:</label>
+                  <input placeholder="rampUsersPerSec *" type="number" (change)="handlingInputsTestType($event.target, 0)"
+                    class="form-control">
+                </div>
+              
+                <div class="col-md-4">
+                  <label>To:</label>
+                  <input placeholder="to *" type="number" (change)="handlingInputsTestType($event.target, 1)"
+                    class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label>periode:</label>
+                  <input placeholder="during *" type="number" (change)="handlingInputsTestType($event.target, 2)"
+                    class="form-control">
+                </div>
+              </div>
+              
+              
+            </div>
 
           </div>
           <div>
@@ -520,7 +525,7 @@
      
 
     </div>
-  </form>  <h4 style="color: black;"> {{this.SetupFrom.value | json}}</h4>
+  </form>  <h4 style="color: black;"> {{this.formDataJson | json}}</h4>
 </div>
 <div class="row-buton">
   <div class="col-md-4">
