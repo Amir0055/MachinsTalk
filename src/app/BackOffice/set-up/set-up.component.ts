@@ -17,7 +17,7 @@ import { application } from 'src/app/entities/application';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SetUpComponent implements OnInit {
-
+  Senddata!:Blob;
   typeTestChoising!:any;
    pathSelectOptions: Path[] = [];
     ValuesSaisie: number[] = [];
@@ -92,17 +92,27 @@ export class SetUpComponent implements OnInit {
       this.saveSetupData(this.formDataJson);
   }
   saveSetupData(setup: Setup){
-    this.setupService.registerSetup(setup).subscribe((data) => { 
-      console.log(data);
-      
-    },(error) =>{
-      console.error('Failed Add Setup Data ', error);
-    });
+    this.setupService.registerSetup(setup).subscribe( (response) => {
+      this.downloadRapport(response);
+    },
+    (error) => {
+      console.error('Error:', error);
+    }
+  );
+
+  }
+  downloadRapport(data: any) {
+    let blob:Blob=data.body as Blob
+    this.setupService.sendData(blob);
+    let a = document.createElement('a');
+    a.download="Rapport.zip";
+    a.href=window.URL.createObjectURL(blob);
+    a.click();
   }
 
   checkWichType(scenario:any){
-    if(scenario.controls.typeTest.value == "CONSTANT_LOAD")
-      return "CONSTANT_LOAD";
+    if(scenario.controls.typeTest.value == "CONSTANT_LOAD_TEST")
+      return "CONSTANT_LOAD_TEST";
     if(scenario.controls.typeTest.value == "STRESS_LOAD_TEST")
       return "STRESS_LOAD_TEST";
     if(scenario.controls.typeTest.value == "SOAK_LOAD_TEST")

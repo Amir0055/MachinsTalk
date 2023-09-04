@@ -9,6 +9,7 @@ import { UpdatePathComponent } from './BackOffice/update-path/update-path.compon
 
 import { SetUpComponent } from './BackOffice/set-up/set-up.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { LoadingPageComponent } from './BackOffice/loading-page/loading-page.component';
 
 const routes: Routes = [{
   path: 'admin', component: AlltemplatesadminComponent, children: [
@@ -40,7 +41,11 @@ const routes: Routes = [{
 
 
   ]
-}, {path: '', redirectTo: '/admin/home', pathMatch: 'full'}];
+}, {path: '', redirectTo: '/admin/home', pathMatch: 'full'},
+
+{path: 'admin/LoadingPage', component:LoadingPageComponent}
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)], exports: [RouterModule]

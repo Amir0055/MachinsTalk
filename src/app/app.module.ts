@@ -28,6 +28,7 @@ import { SetUpComponent } from './BackOffice/set-up/set-up.component';
 import { PopupComponent } from './BackOffice/popup/popup.component';
 import { MyPaginatorComponent } from './my-paginator/my-paginator.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { LoadingPageComponent } from './BackOffice/loading-page/loading-page.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { HomePageComponent } from './home-page/home-page.component';
      PopupComponent,
      MyPaginatorComponent,
      HomePageComponent,
+     LoadingPageComponent,
 
    
 

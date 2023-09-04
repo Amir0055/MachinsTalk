@@ -139,7 +139,7 @@
                 </button></p>
               </div>
               <div class="col-md-4">
-                <input value="CONSTANT_LOAD" formControlName="typeTest" 
+                <input value="CONSTANT_LOAD_TEST" formControlName="typeTest" 
                   type="radio"  />
                 <label for="option3">
                   <img src="/assets/Back/img/CONSTANT_LOAD_TEST.png" alt="image 3" />
@@ -275,28 +275,28 @@
                
                 <div class="col-md-4">
                   <label>stressPeakUsers to Hight Nbr suddenly :</label>
-                  <input placeholder="stressPeakUsers *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 0)"
+                  <input placeholder="stressPeakUsers *" type="number"   (change)="handlingInputsTestType($event.target, 0)"
                     class="form-control">
                 </div>
                 <div class="col-md-4">
                   <label>during periode in second :</label>
-                  <input placeholder="during *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 1)"
+                  <input placeholder="during *" type="number" (change)="handlingInputsTestType($event.target, 1)"
                     class="form-control">
                 </div>
               </div>
 
             </div>  
-            <div *ngIf=" checkWichType(scenario) === 'CONSTANT_LOAD' ">
+            <div *ngIf=" checkWichType(scenario) === 'CONSTANT_LOAD_TEST' ">
               <div class="row">
                
                 <div class="col-md-4"> 
                   <label>Constant load of Nbr users per sec:</label>
-                  <input placeholder="constantUsersPerSec *" type="number"  formControlName="name"(change)="handlingInputsTestType($event.target, 0)"
+                  <input placeholder="constantUsersPerSec *" type="number"  (change)="handlingInputsTestType($event.target, 0)"
                     class="form-control">
                 </div>
                 <div class="col-md-4">
                   <label> during periode in seconds:</label>
-                   <input placeholder="during *" type="number"  formControlName="name"(change)="handlingInputsTestType($event.target, 1)"
+                   <input placeholder="during *" type="number"  (change)="handlingInputsTestType($event.target, 1)"
                     class="form-control">
                 </div>
               </div>
@@ -306,7 +306,7 @@
                
                 <div class="col-md-4"> 
                   <label>Start with a delay :</label>
-                  <input placeholder="nothingFor *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 0)"
+                  <input placeholder="nothingFor *" type="number"   (change)="handlingInputsTestType($event.target, 0)"
                     class="form-control">
                 </div>
             
@@ -314,65 +314,65 @@
               <div class="row">
                 <div class="col-md-4">
                   <label> Ramp up Nbr users :</label>
-                   <input placeholder="rampUsers *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 1)"
+                   <input placeholder="rampUsers *" type="number"  (change)="handlingInputsTestType($event.target, 1)"
                     class="form-control">
                 </div>
              
                 <div class="col-md-4">
                   <label>during periode in second :</label>
-                  <input placeholder="during *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 2)"
+                  <input placeholder="during *" type="number"   (change)="handlingInputsTestType($event.target, 2)"
                     class="form-control">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <label> Delay between steps :</label>
-                   <input placeholder="nothingFor *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 3)"
+                   <input placeholder="nothingFor *" type="number"  (change)="handlingInputsTestType($event.target, 3)"
                     class="form-control">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <label> Maintain a constant load of Nbr users :</label>
-                   <input placeholder="constantUserPerSec *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 4)"
+                   <input placeholder="constantUserPerSec *" type="number"  (change)="handlingInputsTestType($event.target, 4)"
                     class="form-control">
                 </div>
              
                 <div class="col-md-4">
                   <label>during periode in second :</label>
-                  <input placeholder="during *" type="number"  formControlName="name"(change)="handlingInputsTestType($event.target, 5)"
+                  <input placeholder="during *" type="number"  (change)="handlingInputsTestType($event.target, 5)"
                     class="form-control">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <label> Delay between steps :</label>
-                   <input placeholder="nothingFor *" type="number"  formControlName="name"(change)="handlingInputsTestType($event.target, 6)"
+                   <input placeholder="nothingFor *" type="number"  (change)="handlingInputsTestType($event.target, 6)"
                     class="form-control">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <label> Ramp up Your Nbr of User from :</label>
-                   <input placeholder="rampUserPerSec *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 7)"
+                   <input placeholder="rampUserPerSec *" type="number"   (change)="handlingInputsTestType($event.target, 7)"
                     class="form-control">
                 </div>
              
                 <div class="col-md-4">
                   <label>To :</label>
-                  <input placeholder="to *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 8)"
+                  <input placeholder="to *" type="number"   (change)="handlingInputsTestType($event.target, 8)"
                     class="form-control">
                 </div>
                 <div class="col-md-4">
                   <label>periode :</label>
-                  <input placeholder="during *" type="number"  formControlName="name"(change)="handlingInputsTestType($event.target, 9)"
+                  <input placeholder="during *" type="number"  (change)="handlingInputsTestType($event.target, 9)"
                     class="form-control">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <label> Delay between steps :</label>
-                   <input placeholder="nothingFor *" type="number"  formControlName="name"(change)="handlingInputsTestType($event.target, 10)"
+                   <input placeholder="nothingFor *" type="number"  (change)="handlingInputsTestType($event.target, 10)"
                     class="form-control">
                 </div>
               </div>
@@ -382,7 +382,7 @@
               <div class="row">
                 <div class="col-md-4"> 
                   <label> Initial burst of Nbr users :</label>
-                  <input placeholder="atOnceUsers *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 0)"
+                  <input placeholder="atOnceUsers *" type="number"   (change)="handlingInputsTestType($event.target, 0)"
                     class="form-control">
                 </div>
            
@@ -393,7 +393,7 @@
                
                 <div class="col-md-4"> 
                   <label> Start with a delay:</label>
-                  <input placeholder="nothingFor *" type="number" formControlName="name" (change)="handlingInputsTestType($event.target, 0)"
+                  <input placeholder="nothingFor *" type="number" (change)="handlingInputsTestType($event.target, 0)"
                     class="form-control">
                 </div>
            
@@ -403,7 +403,7 @@
                
                 <div class="col-md-4"> 
                   <label>Initial add Nbr Of users:</label>
-                  <input placeholder="atOnceUsers *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 1)"
+                  <input placeholder="atOnceUsers *" type="number"   (change)="handlingInputsTestType($event.target, 1)"
                     class="form-control">
                 </div>
            
@@ -411,26 +411,26 @@
               <div class="row">
                 <div class="col-md-4">
                   <label> Ramp up Nbr users :</label>
-                   <input placeholder="rampUsers *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 2)"
+                   <input placeholder="rampUsers *" type="number"   (change)="handlingInputsTestType($event.target, 2)"
                     class="form-control">
                 </div>
              
                 <div class="col-md-4">
                   <label> Over _ periode in second :</label>
-                  <input placeholder="during *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 3)"
+                  <input placeholder="during *" type="number"  (change)="handlingInputsTestType($event.target, 3)"
                     class="form-control">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <label> Ramp up Nbr users :</label>
-                   <input placeholder="rampUsers *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 4)"
+                   <input placeholder="rampUsers *" type="number"  (change)="handlingInputsTestType($event.target, 4)"
                     class="form-control">
                 </div>
              
                 <div class="col-md-4">
                   <label> Over _ during periode in second :</label>
-                  <input placeholder="during *" type="number"  formControlName="name" (change)="handlingInputsTestType($event.target, 5)"
+                  <input placeholder="during *" type="number"  (change)="handlingInputsTestType($event.target, 5)"
                     class="form-control">
                 </div>
               </div>
@@ -534,7 +534,7 @@
 </button>
 </div>
 <div  class="col-md-4 d-flex justify-content-end">
-  <button class="game-button" (click)="onSubmit()">
+  <button routerLink="/admin/LoadingPage" class="game-button" (click)="onSubmit()">
     <svg class="play-icon" viewBox="0 0 40 40">
         <path d="M 10,10 L 30,20 L 10,30 z"></path>
     </svg>

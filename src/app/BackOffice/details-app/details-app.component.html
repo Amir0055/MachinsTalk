@@ -17,16 +17,21 @@
       <span class="movie-genre">web, Api, Test</span>
     </div>
     <div class="movie-castcrew">
-      <span class="title">Protocole</span>
-      <span class="name">{{app.protocol}}</span>
+      <span class="title">Protocole : </span>
+      <span class="name"> {{app.protocol}}</span>
     </div>
     <div class="movie-castcrew">
-      <span class="title">Port</span>
-      <span class="name">{{app.numPort}}</span>
+      <span class="title">Port :</span>
+      <div *ngIf="app.numPort == null" style="display: inline;">
+        <span class="name" >No Port Defined</span>
+      </div>
+      <div *ngIf="app.numPort != null" style="display: inline;">
+        <span class="name">{{app.numPort}}</span>
+      </div>
     </div>
     <div class="movie-castcrew">
-      <span class="title">BaseURL</span>
-      <span class="name">{{app.basicUrl}}</span>
+      <span class="title">BaseURL :</span>
+      <span class="name"> {{app.basicUrl}}</span>
     </div>
     <div class="movie-synopsis">
       {{app.description}}
