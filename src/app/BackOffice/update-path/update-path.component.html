@@ -35,8 +35,10 @@
                                Url can't be blank 
                                 </div>
                          </div>
+                   
                             <div class="form-group">
                             <select  class="form-control"name="requestType" id="inputGroupSelect02" [(ngModel)]="path.requestType" >
+                              <option value="" disabled selected>Request Methode</option>
                               <option value="get">GET</option>
                               <option value="post">POST</option>
                               <option value="put">PUT</option>
@@ -51,12 +53,11 @@
                             <h3 style="color: rgba(64, 64, 255, 0.607);"> Parameters :</h3>
                         
                             <div class="form-group">
-
-                             
-                                  <div  class="input-field" >
+                                  <div class="input-field">
                                     <input  type="text" name="clees" [(ngModel)]="param.clee"  class="form-control"
-                                           placeholder="Key *" #Paramss = "ngModel" ngModel   >
-                                  </div>    </div>
+                                     placeholder="Key *" #Paramss = "ngModel" ngModel >
+                                  </div>
+                            </div>
                                     <!-- Display the error message if the key is not unique -->
                         
                                         <div class="error-message" *ngIf="isKeyNotUnique">
@@ -71,7 +72,8 @@
                             <div class="form-group">
                            
                           </div> <div class="form-group">
-                              <select class="form-control" [(ngModel)]="param.paramType"  name="paramType" id="inputGroupSelect01"  >
+                              <select class="form-control" [(ngModel)]="param.paramType"  name="paramType" id="inputGroupSelect01">
+                                <option value="" disabled selected>Parameter Type</option>
                                 <option value="QUERRY_PARAM">QUERRY_PARAM</option>  
                                 <option value="PATH_VARIABLE">PATH_VARIABLE</option>
                               </select>
@@ -121,7 +123,6 @@
             
             <td>
 
-              <p-confirmDialog></p-confirmDialog>
               <span class="table-remove"
                 ><button type="button" class="fas fa-trash-alt delete-icon"  (click)="remove (item)">
                   Remove
@@ -148,7 +149,9 @@
   <button class="go-back-button" (click)="goBack()">
     <i class="fas fa-arrow-left"></i> Go Back
   </button>
-<button type="submit" class="btnSubmit" [disabled]="!pathForm.valid" (click)="submited(path)"  >Submit</button>
+  <p-confirmDialog></p-confirmDialog>
+
+<button type="submit" class="btnSubmit" (click)="submited(path)"  >Submit</button>
 </div>
 
 <div>

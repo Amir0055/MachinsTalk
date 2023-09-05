@@ -64,7 +64,7 @@ export class SetUpComponent implements OnInit {
       name: '',
       typeTest: '',
         path: this.fb.group({
-        id: '',
+        id: [''],
         name: '',
         path: '',
         requestType: RequestType.get, 
@@ -94,6 +94,7 @@ export class SetUpComponent implements OnInit {
   saveSetupData(setup: Setup){
     this.setupService.registerSetup(setup).subscribe( (response) => {
       this.downloadRapport(response);
+      this.setupService.notifySetupComplete();
     },
     (error) => {
       console.error('Error:', error);
@@ -168,13 +169,6 @@ export class SetUpComponent implements OnInit {
      idControl?.setValue(selectedPath_X2?.id);
      pathControl?.setValue(selectedPath_X2?.path);
      appControl?.setValue(selectedPath_X2?.application);
- /* parameters.forEach((value) => {
-    const found = listExisteParamters.find((obj :Parameterss) => {
-      return obj.clee === value.clee;
-    });
-    if(!found)
-    this.pushParameterToFormGroupe(value);
-  });*/
   this.pushParameterToFormGroupe(parameters);
     return parameters;
   }

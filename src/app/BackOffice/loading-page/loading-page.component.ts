@@ -14,9 +14,10 @@ export class LoadingPageComponent implements OnInit{
   ngOnInit(): void {
     this.apiService.getData().subscribe((data) => {
       this.receivedData = data;
-     let isfinishGeneration= this.apiService.getIsRapportGenerated();
-     if(isfinishGeneration)
-     this.PopUpModel();
+      this.apiService.setupComplete$.subscribe(() => {
+        this.PopUpModel();
+       console.log("NIIICEE I RECIVE THAT U completed ");
+      });
     });
   }
 
@@ -27,15 +28,16 @@ export class LoadingPageComponent implements OnInit{
     a.click();
   }
     
+  
   PopUpModel() {
-    const modelDiv = document.getElementById('myModal');
+    const modelDiv = document.getElementById('myModal1');
     if(modelDiv!= null) {
       modelDiv.style.display = 'block';
     } 
   }
 
   CloseModel() {
-    const modelDiv = document.getElementById('myModal');
+    const modelDiv = document.getElementById('myModal1');
     if(modelDiv!= null) {
       modelDiv.style.display = 'none';
     } }

@@ -1790,7 +1790,7 @@ body {
 
 .moviecard .movie-poster {
   position: absolute;
-  background: url("/assets/Back/img/unnamed.png");
+  background: url("/assets/Back/img/app-information.png");
   background-color: #dbdbdb;
   background-size: 360px 540px;
   background-repeat: no-repeat;

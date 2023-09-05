@@ -9,7 +9,8 @@ import { Observable, Subject } from 'rxjs';
 })
 export class SetupService {
   private Raport = new Subject<Blob>();
-  private isRapportGenerated= false;
+  private setupCompleteSubject = new Subject<void>();
+  setupComplete$ = this.setupCompleteSubject.asObservable();
   private baseUrl = 'http://localhost:8085';
   constructor(private http: HttpClient) {
     
@@ -31,13 +32,12 @@ export class SetupService {
 
   sendData(data: any) {
     this.Raport.next(data);
-    this.isRapportGenerated=true;
   }
 
   getData() {
     return this.Raport.asObservable();
   }
-  getIsRapportGenerated() {
-    return this.isRapportGenerated;
+  notifySetupComplete() {
+    this.setupCompleteSubject.next();
   }
 }

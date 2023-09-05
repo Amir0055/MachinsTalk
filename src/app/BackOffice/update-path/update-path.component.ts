@@ -79,7 +79,7 @@ export class UpdatePathComponent implements OnInit {
   }  
 
   MakeChange(form: NgForm) {
-    console.log(this.param);
+
     const isUnique = this.isUniqueKey(this.param.clee, this.ListParameters);
 
       if (this.isReadyToUpdate) {// check click update Button 
@@ -183,6 +183,7 @@ export class UpdatePathComponent implements OnInit {
 
 
     submited(pat: Path){
+      this.messageService.clear();
       this.confirmationService.confirm({
         message: 'Are you sure you want to save?',
         accept: () => {
