@@ -19,7 +19,7 @@ const routes: Routes = [{
     {
       path: 'home', component: ListapplicationComponent
     },
-    { path: "HomePage", component: HomePageComponent },
+
     {
       path: 'listapp', component: ListapplicationComponent
     }, 
