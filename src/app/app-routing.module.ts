@@ -6,16 +6,20 @@ import {ListapplicationComponent} from './BackOffice/listapplication/listapplica
 import { DetailsAppComponent } from './BackOffice/details-app/details-app.component';
 import { UpdateAppComponent } from './BackOffice/update-app/update-app.component';
 import { UpdatePathComponent } from './BackOffice/update-path/update-path.component';
-import { WarningComponent } from './warning/warning.component';
-import { WellDoneComponent } from './well-done/well-done.component';
+
 import { SetUpComponent } from './BackOffice/set-up/set-up.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { LoadingPageComponent } from './BackOffice/loading-page/loading-page.component';
 
 const routes: Routes = [{
-  path: 'admin', component: AlltemplatesadminComponent, children: [
+  path: "HomePage", component: HomePageComponent },
+
+  {path: 'admin', component: AlltemplatesadminComponent, children: [
 
     {
       path: 'home', component: ListapplicationComponent
     },
+    { path: "HomePage", component: HomePageComponent },
     {
       path: 'listapp', component: ListapplicationComponent
     }, 
@@ -36,15 +40,14 @@ const routes: Routes = [{
 {path:"AjoutApp", component:UpdateAppComponent  
 },
 
-{
-  path: 'Warnign', component: WarningComponent
-},
-{
-  path: 'sucess', component: WellDoneComponent
-},
+
 
   ]
-}, {path: '', redirectTo: '/admin/home', pathMatch: 'full'}];
+}, {path: '', redirectTo: '/HomePage', pathMatch: 'full'},
+
+{path: 'admin/LoadingPage', component:LoadingPageComponent}
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)], exports: [RouterModule]

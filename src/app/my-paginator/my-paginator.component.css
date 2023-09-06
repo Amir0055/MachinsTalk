@@ -1,0 +1,19 @@
+.page-link.active {
+    background-color: #007bff; /* Change this to your desired background color */
+    color: #fff; /* Change this to your desired text color */
+  }
+  .page-item .page-link.disabled {
+    /* Define your custom styles for the disabled link */
+    color: #888888;
+    cursor: not-allowed;
+  }
+  .pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .35rem;
+    flex-wrap: wrap;
+    align-content: stretch;
+    flex-direction: row;
+    justify-content: center;
+}

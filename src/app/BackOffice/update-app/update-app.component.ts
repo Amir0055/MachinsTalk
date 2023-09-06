@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { application } from 'src/app/entities/application';
 import { ApplicationService } from 'src/app/services/application.service';
@@ -49,9 +48,8 @@ export class UpdateAppComponent implements OnInit{
     this._service.save(this.app).subscribe(
       (data) => {
         this.app = data;
-       
-        this.router.navigate(['admin/listapp']);
         this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: 'Application Added' });
+        this.router.navigate(['admin/listapp']);
       },
       
     );
@@ -61,8 +59,9 @@ export class UpdateAppComponent implements OnInit{
     this._service.update(this.app).subscribe(
       () => {
         console.log(this.app);
-        this.router.navigate(['admin/Detailsapp']);
+    
         this.messageService.add({ severity: 'info', summary: 'Updated', detail: 'Application updated' });
+        this.router.navigate(['admin/Detailsapp']);
       },
       (error) => {
         this.error = error.error.message;

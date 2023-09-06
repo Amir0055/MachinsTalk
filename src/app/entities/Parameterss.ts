@@ -4,7 +4,8 @@ import { Path } from './Path';
 export class Parameterss {
 
     id!: number;
-    clee!: any;
+    clee!: string;
+    value!: string;
     paramType!: ParamType;
     pathsss!: Path;
   }

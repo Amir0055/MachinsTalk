@@ -83,9 +83,11 @@
         </div>
 
                   
-        <button type="button" class="btnSubmit" (click)="onSubmit()" routerLink="/admin/listapp"
+        <button type="button" class="btnSubmit" (click)="onSubmit()" 
         [disabled]="carForm.invalid">Save</button>
       </div>
       </form>
       </div>
-   
+      <button class="go-back-button" (click)="goBack()">
+        <i class="fas fa-arrow-left"></i> Go Back
+      </button>

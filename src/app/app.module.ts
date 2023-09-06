@@ -17,15 +17,19 @@ import { UpdateAppComponent } from './BackOffice/update-app/update-app.component
 
 import { DropDownInputsComponent } from './drop-down-inputs/drop-down-inputs.component';
 import { UpdatePathComponent } from './BackOffice/update-path/update-path.component';
-import { WellDoneComponent } from './well-done/well-done.component';
-import { WarningComponent } from './warning/warning.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LinkBetwenComponent } from './link-betwen/link-betwen.component';
+import {  MatDialogModule } from '@angular/material/dialog';
 import { SetUpComponent } from './BackOffice/set-up/set-up.component';
+import { PopupComponent } from './BackOffice/popup/popup.component';
+import { MyPaginatorComponent } from './my-paginator/my-paginator.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { LoadingPageComponent } from './BackOffice/loading-page/loading-page.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,16 +42,19 @@ import { SetUpComponent } from './BackOffice/set-up/set-up.component';
     BodyadminComponent,
     ListapplicationComponent,
     DetailsAppComponent,
-    UpdatePathComponent,
  
     DropDownInputsComponent,
     UpdatePathComponent,
-    WellDoneComponent,
-    WarningComponent,
-    UpdateAppComponent,
-    LinkBetwenComponent,
-    SetUpComponent
 
+    UpdateAppComponent,
+
+    SetUpComponent,
+     PopupComponent,
+     MyPaginatorComponent,
+     HomePageComponent,
+     LoadingPageComponent,
+
+   
 
   ],
   imports: [
@@ -63,6 +70,7 @@ import { SetUpComponent } from './BackOffice/set-up/set-up.component';
     ConfirmDialogModule,
     ToastModule,
     BrowserAnimationsModule,
+    MatDialogModule,
     
 
   ],

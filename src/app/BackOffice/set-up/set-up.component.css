@@ -53,8 +53,6 @@
     background: #0ecc00;
     color: #fff;
  
-   
-   
 }
 .delete-icon {
     color: red;
@@ -311,3 +309,513 @@ margin-top: 5px;
   .col-md-6{
     padding: 40px;
   }
+  .input-hidden {
+    position: absolute;
+    left: -9999px;
+   
+  }
+  
+  input[type=radio]:checked + label>img {
+    border: 1px solid #fff;
+    box-shadow: 0 0 3px 3px greenyellow;
+  }
+  
+  input[type=radio] + label>img {
+    border: 1px dashed #444;
+    width: 150px;
+    height: 150px;
+    transition: 100ms all;
+     margin-left: 70px;
+  }
+  
+  html {
+    background-color: #22fe00;
+    background-size: 100% 1.2em;
+    background-image: 
+      linear-gradient(
+        90deg, 
+        transparent 79px, 
+        #22fe00 79px, 
+        #22fe00 81px, 
+        transparent 81px
+      ),
+      linear-gradient(
+        #22fe00 .1em, 
+        transparent .1em
+      );
+   
+  }
+  
+:root {
+	--delay: 0;
+	--duration: 800ms;
+	--iterations: 1;
+}
+/* •·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•· */
+
+
+.reveal-text,
+.reveal-text::after {
+	animation-delay: var(--animation-delay, 2s);
+	animation-iteration-count: var(--iterations, 1);
+	animation-duration: var(--duration, 800ms);
+	animation-fill-mode: both;
+	animation-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+.reveal-text {
+	--animation-delay: var(--delay, 0);
+	--animation-duration: var(--duration, 800ms);
+	--animation-iterations: var(--iterations, 1);
+	position: relative;
+	font-size: 2vw;
+	animation-name: clip-text;
+	color: #000000;
+	white-space: nowrap;
+	cursor: default;
+	
+	&::after {
+		content: "";
+		position: absolute;
+		z-index: 999;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #224abe;
+		transform: scaleX(0);
+		transform-origin: 0 50%;
+		pointer-events: none;
+		animation-name: text-revealer;
+	}
+	
+}
+
+
+@keyframes clip-text {
+	from {
+		clip-path: inset(0 100% 0 0);
+	}
+	to {
+		clip-path: inset(0 0 0 0);
+	}
+}
+
+
+@keyframes text-revealer {
+	
+	0%, 50% {
+		transform-origin: 0 50%;
+	}
+	
+	60%, 100% {
+		transform-origin: 100% 50%;		
+	}
+
+	
+	60% {
+		transform: scaleX(1);
+	}
+	
+	100% {
+		transform: scaleX(0);
+	}
+}
+
+
+@use postcss-preset-env {
+	stage: 0;
+	browsers: [
+		"last 1 Chrome versions",
+		"last 1 Firefox versions",
+		"last 1 Safari versions",
+		"last 1 Edge versions"
+	]
+}
+.image-text {
+  text-align: center;
+}
+.description {
+  display: block;
+  margin-top: 5px;
+  color: #666;
+}
+.custom-tooltip {
+  --bs-tooltip-bg: var(--bd-violet-bg);
+  --bs-tooltip-color: var(--bs-white);
+}
+
+.centered-dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0 !important;
+  overflow-y: auto !important;
+  padding: 0 !important;
+  position: fixed;
+  width: 100%;
+  z-index: 10000; /* Ensure the dialog appears above other content */
+}
+
+/* The switch - the box around the slider */
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 1.2em;
+  height: 3.3em;
+}
+
+/* Hide default HTML checkbox */
+.switch .chk {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 5px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: .5em;
+  width: 2.4em;
+  border-radius: 5px;
+  left: -0.6em;
+  top: 0.2em;
+  background-color: white;
+  box-shadow: 0 6px 7px rgba(0,0,0,0.3);
+  transition: .4s;
+}
+
+.slider:before, .slider:after {
+  content: "";
+  display: block;
+}
+
+.slider:after {
+  background: linear-gradient(transparent 50%, rgba(255, 255, 255, 0.15) 0) 0 50% / 50% 100%,
+repeating-linear-gradient(90deg,rgb(255, 255, 255) 0,rgb(255, 255, 255),rgb(255, 255, 255) 20%,rgb(255, 255, 255) 20%,rgb(255, 255, 255) 40%) 0 50% / 50% 100%,
+radial-gradient(circle at 50% 50%,rgb(255, 255, 255) 25%, transparent 26%);
+  background-repeat: no-repeat;
+  border: 0.25em solid transparent;
+  border-left: 0.4em solid #ffffff;
+  border-right: 0 solid transparent;
+  transition: border-left-color 0.1s 0.3s ease-out, transform 0.3s ease-out;
+  transform: translateX(-22.5%) rotate(90deg);
+  transform-origin: 25% 50%;
+  position: relative;
+  top: 0.5em;
+  left: 0.55em;
+  width: 2em;
+  height: 1em;
+  box-sizing: border-box;
+}
+
+.chk:checked + .slider {
+  background-color: limegreen;
+}
+
+.chk:focus + .slider {
+  box-shadow: 0 0 1px limegreen;
+}
+
+.chk:checked + .slider:before {
+  transform: translateY(2.3em);
+}
+
+.chk:checked + .slider:after {
+  transform: rotateZ(90deg) rotateY(180deg) translateY(0.45em) translateX(-1.4em);
+}
+/*! Explain test Css!*/
+.button-expalin {
+  position: relative;
+  list-style: none;
+  border: none;
+  background-color: transparent;
+  border-radius: 50%;
+  cursor: grab;
+  padding-top: 10px;
+}
+
+.button-expalin .svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  transition: all 0.3s;
+}
+
+.button-expalin .svg2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  fill: #f4af03;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.button-expalin:hover .svg {
+  fill: #f4af03;
+}
+
+.button-expalin:hover .svg2 {
+  opacity: 1;
+  fill: #f4af03;
+}
+  /*? Add Scenario item */
+  .button-add {
+    position: relative;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 1px solid  greenyellow;
+    background-color: greenyellow;
+  }
+  
+  .button-add, .button__icon, .button__text {
+    transition: all 0.3s;
+  }
+  
+  .button-add .button__text {
+    transform: translateX(30px);
+    color: #fff;
+    font-weight: 600;
+  }
+  
+  .button-add .button__icon {
+    position: absolute;
+    transform: translateX(109px);
+    height: 100%;
+    width: 39px;
+    background-color: #34974d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button-add .svg {
+    width: 30px;
+    stroke: #fff;
+  }
+  
+  .button-add:hover {
+    background: #34974d;
+  }
+  
+  .butbutton-addton:hover .button__text {
+    color: transparent;
+  }
+  
+  .button-add:hover .button__icon {
+    width: 148px;
+    transform: translateX(0);
+  }
+  
+  .button:active .button__icon {
+    background-color: #2e8644;
+  }
+  
+  .button:active {
+    border: 1px solid #2e8644;
+  }
+  /*!! play setup button*/
+  .game-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    box-shadow: 2px 2px 10px #007bff;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  
+  .play-icon {
+    width: 24px;
+    height: 24px;
+    fill: #fff;
+    margin-right: 10px;
+  }
+  
+  .game-button:hover {
+    background-color: #2f3640;
+    color: #799bff;
+    box-shadow: 2px 2px 20px #2f3640;
+    transform: translateY(-2px);
+  }
+  /* Space bettwen */
+  .row-buton {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: 13vw; /* Adjust the percentage value as needed */
+    margin-left: 13vw;
+    justify-content: space-between;
+  }
+  /*!! CLose PopUp button*/
+  .btnpopup {
+    --color: #ff2600;
+    --color2: rgb(10, 25, 30);
+    padding: 0.8em 1.75em;
+    background-color: transparent;
+    border-radius: 6px;
+    border: .3px solid var(--color);
+    transition: .5s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+    font-weight: 300;
+    font-size: 11px;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+    color: var(--color);
+   }
+   
+   .btnpopup::after, .btnpopup::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform: skew(90deg) translate(-50%, -50%);
+    position: absolute;
+    inset: 50%;
+    left: 25%;
+    z-index: -1;
+    transition: .5s ease-out;
+    background-color: var(--color);
+   }
+   
+   .btnpopup::before {
+    top: -50%;
+    left: -25%;
+    transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
+   }
+   
+   .btnpopup:hover::before {
+    transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
+   }
+   
+   .btnpopup:hover::after {
+    transform: skew(45deg) translate(-50%, -50%);
+   }
+   
+   .btnpopup:hover {
+    color: var(--color2);
+   }
+   
+   .btnpopup:active {
+    filter: brightness(.7);
+    transform: scale(.98);
+   }
+     /*!! Save PopUp button*/
+  .btnpopupSave {
+    --color: #28a745;
+    --color2: rgb(10, 25, 30);
+    padding: 0.8em 1.75em;
+    background-color: transparent;
+    border-radius: 6px;
+    border: .3px solid var(--color);
+    transition: .5s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+    font-weight: 300;
+    font-size: 11px;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+    color: var(--color);
+   }
+   
+   .btnpopupSave::after, .btnpopupSave::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform: skew(90deg) translate(-50%, -50%);
+    position: absolute;
+    inset: 50%;
+    left: 25%;
+    z-index: -1;
+    transition: .5s ease-out;
+    background-color: var(--color);
+   }
+   
+   .btnpopupSave::before {
+    top: -50%;
+    left: -25%;
+    transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
+   }
+   
+   .btnpopupSave:hover::before {
+    transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
+   }
+   
+   .btnpopupSave:hover::after {
+    transform: skew(45deg) translate(-50%, -50%);
+   }
+   
+   .btnpopupSave:hover {
+    color: var(--color2);
+   }
+   
+   .btnpopupSave:active {
+    filter: brightness(.7);
+    transform: scale(.98);
+   }
+
+         /*!! Token PopUp Button*/
+         .btnToken {
+          background-color: #1856ff;
+          padding: 14px 40px;
+          color: #fff;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          cursor: pointer;
+          border-radius: 10px;
+          border: 2px dashed #00BFA6;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+          transition: .4s;
+         }
+         
+         .btnToken span:last-child {
+          display: none;
+         }
+         
+         .btnToken:hover {
+          transition: .4s;
+          border: 2px dashed #00BFA6;
+          background-color: #fff;
+          color: #00BFA6;
+         }
+         
+         .btnToken:active {
+          background-color: #87dbd0;
+         }
+         
+         
