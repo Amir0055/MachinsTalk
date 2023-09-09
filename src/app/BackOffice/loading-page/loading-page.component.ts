@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SetupService } from 'src/app/services/setup.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class LoadingPageComponent implements OnInit{
 
   receivedData!:Blob;
 
-  constructor(private apiService: SetupService) { }
+  constructor(private apiService: SetupService,private route: Router) { }
   ngOnInit(): void {
     this.apiService.getData().subscribe((data) => {
       this.receivedData = data;
@@ -42,4 +43,7 @@ export class LoadingPageComponent implements OnInit{
       modelDiv.style.display = 'none';
     } }
 
+    goBack(): void {
+      this.route.navigate(['admin/listapp']);
+    }
 }

@@ -584,8 +584,8 @@ radial-gradient(circle at 50% 50%,rgb(255, 255, 255) 25%, transparent 26%);
     cursor: pointer;
     display: flex;
     align-items: center;
-    border: 1px solid  greenyellow;
-    background-color: greenyellow;
+    border: 1px solid  rgb(64, 47, 255);
+    background-color: rgb(47, 130, 255);
   }
   
   .button-add, .button__icon, .button__text {
@@ -603,7 +603,7 @@ radial-gradient(circle at 50% 50%,rgb(255, 255, 255) 25%, transparent 26%);
     transform: translateX(109px);
     height: 100%;
     width: 39px;
-    background-color: #34974d;
+    background-color: #345a97;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -615,7 +615,7 @@ radial-gradient(circle at 50% 50%,rgb(255, 255, 255) 25%, transparent 26%);
   }
   
   .button-add:hover {
-    background: #34974d;
+    background: #343997;
   }
   
   .butbutton-addton:hover .button__text {

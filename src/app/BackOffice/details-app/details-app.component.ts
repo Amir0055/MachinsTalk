@@ -65,6 +65,8 @@ goBack(): void {
   this.route.navigate(['admin/listapp']);
 }
 goBackTest(): void {
+  console.log(this.app.paths);
+  
   this.route.navigate(['admin/Setup/'+this.id]);
 }
 //PAgination
@@ -88,22 +90,22 @@ generateNumberList(num: number): number[] {
 
 
 onSelectedItemChange(newSelectedItem: any) {
-  console.log('im in onSelectedItemChange()');
+
 
   this.pageSize = newSelectedItem;
   this.reloadPathsList(this.currentPageIndex, this.pageSize, true);
-  console.log('pagesize' + this.pageSize);
+
 }
 
 setCurrentPage(index: number): void {
   this.currentPageIndex = index;
   this.reloadPathsList(this.currentPageIndex, this.pageSize, false);
-  console.log('pagesize' + this.pageSize);
+
 }
 // reload the list of devices
 reloadPathsList(offset: number, pageSize: number, editPages: boolean) {
   if (!editPages) {
-    console.log('im in reloadPathsList()');
+   
     this.srv
       .findByApplication_IdWithPagination(this.id,offset, pageSize)
       .subscribe((res: any) => {
@@ -112,7 +114,7 @@ reloadPathsList(offset: number, pageSize: number, editPages: boolean) {
         this.app.paths = res.content;
       });
   } else {
-    console.log('im in reloadPathsList()');
+   
 
     this.srv
       .findByApplication_IdWithPagination(this.id,this.currentPageIndex, this.pageSize)
