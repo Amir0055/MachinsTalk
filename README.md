@@ -1,6 +1,6 @@
 # MachinTalks
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.3 1 & SpringBoot Maven Project.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.3 1 & SpringBoot Maven Project version 3.0.2 .
 
 ## Development Performance Test Run Platform
 Run Backend Service from  [here](https://github.com/mounakhattat/MachinTalksBackend).
