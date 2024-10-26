@@ -42,12 +42,7 @@ The purpose of this project is to provide a streamlined solution for developers 
 - **Backend Repository**: The backend service is hosted in a separate repository: [MachinTalksBackend](https://github.com/mounakhattat/MachinTalksBackend).
 
 ## 📷 Screenshots
-![Performance Testing Interface](https://github.com/user-attachments/assets/22ece27d-6eb4-49cd-a3e3-5ade46ee06ac)  
-*Performance Testing Interface*
+![Machinetalk GIF](https://github.com/user-attachments/assets/120f8666-a479-4918-a0d8-78b2a50c7ac9)
+![Rpaort gen](https://github.com/user-attachments/assets/5f298224-7408-44b8-8935-a2e78f2b795b)
 
-![Report Generation](https://github.com/user-attachments/assets/8915d8a8-fa0c-4416-aca7-3234b5560bd9)  
-*Report Generation View*
 
-![Gas and Motion Detection](https://github.com/user-attachments/assets/7e45d181-30bd-4d84-98a8-d15b1318d41b)  
-*Gas and Motion Detection Screen*
- Screen*
