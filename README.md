@@ -44,7 +44,7 @@ The purpose of this project is to provide a streamlined solution for developers 
 ## 📷 Screenshots
 ![Machinetalk GIF](https://github.com/user-attachments/assets/120f8666-a479-4918-a0d8-78b2a50c7ac9)
 ## 📹 Project Demo
-[Watch the demo](https://github.com/username/repo-name/blob/main/path/to/video.mp4)
+[Watch the demo]
 
 https://github.com/user-attachments/assets/1cd51933-3146-4c73-b557-d3575922ed29
 
