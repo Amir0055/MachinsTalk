@@ -7,10 +7,16 @@ MachinTalks is a **IoT Based Company** designed solution to facilitate the load 
 ### 🎯 Purpose
 The purpose of this project is to provide a streamlined solution for developers and testers to evaluate the performance of their APIs under various load conditions. It is particularly useful for applications in fields like web services, microservices, and any system where API performance is critical.
 
-## ⚙️ Scénarios de Test
-1. **Transmission de Données en Temps Réel**:Simulation de l’envoi de données de télémétrie (température, humidité, etc.) par plusieurs dispositifs IoT.
-2. **Stockage et Traitement des Données**:Évaluer la capacité de la base de données à enregistrer de grandes quantités de données dans un court laps de temps.
-3. **Visualisation en Capacity du application ciblé**:Mesurer la réactivité de l’application à l’affichage des données en temps réel sur l’interface utilisateur.
+## ⚙️ **Scénarios de Test**
+
+1. **Transmission de Données en Temps Réel** :  
+   Simuler l’envoi de données de télémétrie (température, humidité, etc.) par plusieurs dispositifs IoT connectés pour évaluer la fluidité des transmissions.
+
+2. **Stockage et Traitement des Données** :  
+   Tester la capacité de la base de données à enregistrer efficacement de grands volumes de données en un court laps de temps.
+
+3. **Visualisation en Cpacity des Application Ciblé** :  
+   Mesurer la réactivité de l’application pour afficher les données reçues en temps réel sur l’interface utilisateur.
 
 ## 🚀 Features
 - **User-Friendly Interface**: An intuitive interface that guides users through the process of creating and managing load tests.
