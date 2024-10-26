@@ -43,7 +43,7 @@ The purpose of this project is to provide a streamlined solution for developers 
 
 ## 📷 Screenshots
 ![Machinetalk GIF](https://github.com/user-attachments/assets/120f8666-a479-4918-a0d8-78b2a50c7ac9)
-![Raport generation GIF](https://github.com/user-attachments/assets/44c1f9a6-5db5-41bf-a92b-f5f3d1392076).
+https://github.com/user-attachments/assets/44c1f9a6-5db5-41bf-a92b-f5f3d1392076
 
 
 
