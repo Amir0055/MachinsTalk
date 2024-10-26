@@ -2,10 +2,11 @@
 **IoT Simulation Platform with Angular and Spring Boot**
 
 ## 📖 Project Description
-MachinTalks is a **IoT Based Company** designed solution to facilitate the load testing of APIs using a user-friendly web interface. Built with Angular for the frontend and Spring Boot for the backend, this project enables users to create and manage performance tests efficiently. The application allows users to define test scenarios, select APIs, and generate comprehensive reports based on the test results.
+MachinTalks, an **IoT-focused company**, has developed this solution to streamline load testing for APIs by simulating real-time IoT data transmission within an intuitive web interface. Built with **Angular** on the frontend and **Spring Boot** on the backend, this project enables users to configure and manage performance tests, specifically assessing if applications can handle high volumes of IoT telemetry data. Users can define test scenarios, select specific APIs, and generate detailed reports to evaluate how well their systems perform under simulated IoT loads.
 
 ### 🎯 Purpose
-The purpose of this project is to provide a streamlined solution for developers and testers to evaluate the performance of their APIs under various load conditions. It is particularly useful for applications in fields like web services, microservices, and any system where API performance is critical.
+This project is designed to help developers and testers simulate IoT device data flow, enabling them to assess if their applications can reliably handle real-time communication with IoT devices. The tool is especially useful for predicting application resilience and communication effectiveness in IoT, web services, and microservices, where smooth data exchange and performance are critical for operational success.
+
 
 ## ⚙️ **Scénarios de Test**
 
