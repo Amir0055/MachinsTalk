@@ -1,51 +1,53 @@
 # MachinTalks
+**IoT Simulation Platform with Angular and Spring Boot**
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.3 1 & SpringBoot Maven Project version 3.0.2 .
+## 📖 Project Description
+MachinTalks is a **IoT Based Company** designed solution to facilitate the load testing of APIs using a user-friendly web interface. Built with Angular for the frontend and Spring Boot for the backend, this project enables users to create and manage performance tests efficiently. The application allows users to define test scenarios, select APIs, and generate comprehensive reports based on the test results.
 
-## Development Performance Test Run Platform
-Run Backend Service from  [here](https://github.com/mounakhattat/MachinTalksBackend).
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
+### 🎯 Purpose
+The purpose of this project is to provide a streamlined solution for developers and testers to evaluate the performance of their APIs under various load conditions. It is particularly useful for applications in fields like web services, microservices, and any system where API performance is critical.
 
+## 🚀 Features
+- **User-Friendly Interface**: An intuitive interface that guides users through the process of creating and managing load tests.
+- **Real-Time Monitoring**: Track the status of API performance in real-time during tests.
+- **Scenario Creation**: Easily define scenarios with multiple APIs, parameters, and performance criteria.
+- **Report Generation**: Automatically generate reports to analyze the results of each test.
 
-## Steps
-1/ Run `ng serve`
+## 🛠️ Tech Stack
+- **Frontend**: Angular
+- **Backend**: Spring Boot
+- **Database**: (Specify if used, e.g., MySQL, MongoDB)
+- **Testing Tool**: Gatling (for generating and executing performance tests)
 
-![image](https://github.com/Amir0055/MachinsTalk/assets/93008466/7f641c76-9b2e-4c74-9524-db8eb36fa38c)
+## ⚙️ Setup and Installation
 
-2/Create your application information that will help for performance testing afterward. 😊
+### Prerequisites
+- Node.js and Angular CLI installed.
+- Java Development Kit (JDK) for running the Spring Boot application.
+- (Specify any database if applicable)
 
-![image](https://github.com/Amir0055/MachinsTalk/assets/93008466/17f17b3f-b9af-4628-83e2-a3ee1b2c5a5e)
-![image](https://github.com/Amir0055/MachinsTalk/assets/93008466/edc50e16-bbc3-435e-9bfb-21e0e98a47f1)
-![image](https://github.com/Amir0055/MachinsTalk/assets/93008466/bafc59a8-f191-419f-9e22-982d88a2fcc7)
+### Steps
+1. **Clone the Backend Repository**:
+   ```bash
+   git clone https://github.com/mounakhattat/MachinTalksBackend
+2. **Clone the Front Repository**:
+   ```bash
+   git clone https://github.com/Amir0055/MachinTalks.git
 
-3/Add endpoint information with their parameters and assign them to your application that you've created.
+## 📂 Project Structure
+- **MachinTalks/**: Root directory containing the project files.
+- **src/**: Contains all source code for the Angular frontend.
+- **assets/**: Includes images and other assets used in the project.
+- **README.md**: Project overview and instructions.
+- **Backend Repository**: The backend service is hosted in a separate repository: [MachinTalksBackend](https://github.com/mounakhattat/MachinTalksBackend).
 
-![image](https://github.com/Amir0055/MachinsTalk/assets/93008466/9a476bb7-cfa6-4d50-af69-6a443f5fba41)
+## 📷 Screenshots
+![Performance Testing Interface](https://github.com/user-attachments/assets/22ece27d-6eb4-49cd-a3e3-5ade46ee06ac)  
+*Performance Testing Interface*
 
-4/After creating your app and defining some of your APIs, you want to put them under load test. Now, let's go ahead and create a scenario. 😊
+![Report Generation](https://github.com/user-attachments/assets/8915d8a8-fa0c-4416-aca7-3234b5560bd9)  
+*Report Generation View*
 
-![image](https://github.com/Amir0055/MachinsTalk/assets/93008466/17ba01eb-8ba5-46ad-8ab3-5653dfdd4252)
-
-•Choose one API you want to test:
-
-![image](https://github.com/Amir0055/MachinsTalk/assets/93008466/ed1e11dc-a424-41f0-a4ae-ff2c5759ff27)
-
-•Choose the type of performance test you want to run and fill in the number of users and duration. :
-
-![image](https://github.com/Amir0055/MachinsTalk/assets/93008466/8faf6574-338a-4044-9683-e03b40a4b8f4)
-![image](https://github.com/Amir0055/MachinsTalk/assets/93008466/badba891-6ce4-4c2d-95ac-592b972cca56)
-
-5/Wait for the report to be generated. 😊
-
-![image](https://github.com/Amir0055/MachinsTalk/assets/93008466/15469b81-19ea-4fe9-8b31-815da6e945a5)
-
-
-## Further help
-• We Used ASM library : to dynamically Generate the Gatling Perf test code in the Backend in real-Time during the waiting process in Step 5/. 
-and We Run that automticly after 😊.So that's the reason why the Rapport generated
-
-
-
-
-https://github.com/Amir0055/MachinsTalk/assets/93008466/cde5e631-47f5-41d5-a08d-67a5a9c3ab3c
-
+![Gas and Motion Detection](https://github.com/user-attachments/assets/7e45d181-30bd-4d84-98a8-d15b1318d41b)  
+*Gas and Motion Detection Screen*
+ Screen*
